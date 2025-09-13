@@ -1,0 +1,572 @@
+{
+  "evaluation_summary": {
+    "evaluation_date": "2025-09-14T01:53:47.311276",
+    "notebook_version": "2.0",
+    "models_evaluated": 6,
+    "best_model": "Logistic Regression",
+    "evaluation_dataset_size": 800,
+    "class_distribution": {
+      "no_attrition": 673,
+      "attrition": 127,
+      "attrition_rate": 0.15875
+    }
+  },
+  "model_comparison": [
+    {
+      "Model": "Logistic Regression",
+      "Accuracy": 0.525,
+      "Precision": 0.1461,
+      "Recall": 0.4062,
+      "F1_Score": 0.2149,
+      "ROC_AUC": 0.4637,
+      "Specificity": 0.5476,
+      "Balanced_Acc": 0.4769,
+      "Matthews_CC": -0.034,
+      "Cohen_Kappa": -0.0268,
+      "PR_AUC": 0.1584,
+      "Log_Loss": 0.7188,
+      "Training_Time": 0.0565,
+      "Cost_Per_Emp": 136.25,
+      "Overall_Score": 0.6442943616911232
+    },
+    {
+      "Model": "SVM",
+      "Accuracy": 0.65,
+      "Precision": 0.1346,
+      "Recall": 0.2188,
+      "F1_Score": 0.1667,
+      "ROC_AUC": 0.5076,
+      "Specificity": 0.7321,
+      "Balanced_Acc": 0.4754,
+      "Matthews_CC": -0.041,
+      "Cohen_Kappa": -0.0392,
+      "PR_AUC": 0.176,
+      "Log_Loss": 0.4397,
+      "Training_Time": 1.4054,
+      "Cost_Per_Emp": 149.25,
+      "Overall_Score": 0.6404935835987403
+    },
+    {
+      "Model": "KNN",
+      "Accuracy": 0.83,
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "F1_Score": 0.0,
+      "ROC_AUC": 0.5126,
+      "Specificity": 0.9881,
+      "Balanced_Acc": 0.494,
+      "Matthews_CC": -0.0439,
+      "Cohen_Kappa": -0.0192,
+      "PR_AUC": 0.184,
+      "Log_Loss": 1.9528,
+      "Training_Time": 0.0015,
+      "Cost_Per_Emp": 161.0,
+      "Overall_Score": 0.48318112633181126
+    },
+    {
+      "Model": "Random Forest",
+      "Accuracy": 0.835,
+      "Precision": 0.0,
+      "Recall": 0.0,
+      "F1_Score": 0.0,
+      "ROC_AUC": 0.4302,
+      "Specificity": 0.994,
+      "Balanced_Acc": 0.497,
+      "Matthews_CC": -0.0309,
+      "Cohen_Kappa": -0.0098,
+      "PR_AUC": 0.1488,
+      "Log_Loss": 0.4985,
+      "Training_Time": 0.4172,
+      "Cost_Per_Emp": 160.5,
+      "Overall_Score": 0.35
+    },
+    {
+      "Model": "Naive Bayes",
+      "Accuracy": 0.74,
+      "Precision": 0.1154,
+      "Recall": 0.0938,
+      "F1_Score": 0.1034,
+      "ROC_AUC": 0.4399,
+      "Specificity": 0.8631,
+      "Balanced_Acc": 0.4784,
+      "Matthews_CC": -0.047,
+      "Cohen_Kappa": -0.0467,
+      "PR_AUC": 0.1432,
+      "Log_Loss": 0.6693,
+      "Training_Time": 0.0084,
+      "Cost_Per_Emp": 157.25,
+      "Overall_Score": 0.32026661957267455
+    },
+    {
+      "Model": "XGBoost",
+      "Accuracy": 0.79,
+      "Precision": 0.0833,
+      "Recall": 0.0312,
+      "F1_Score": 0.0455,
+      "ROC_AUC": 0.4455,
+      "Specificity": 0.9345,
+      "Balanced_Acc": 0.4829,
+      "Matthews_CC": -0.0528,
+      "Cohen_Kappa": -0.0458,
+      "PR_AUC": 0.1463,
+      "Log_Loss": 0.5263,
+      "Training_Time": 0.9582,
+      "Cost_Per_Emp": 160.75,
+      "Overall_Score": 0.23639800530853805
+    }
+  ],
+  "detailed_results": {
+    "Random Forest": {
+      "performance_metrics": {
+        "accuracy": 0.835,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "roc_auc": 0.4302455357142857,
+        "specificity": 0.9940476190476191,
+        "balanced_accuracy": 0.49702380952380953
+      },
+      "confusion_matrix": {
+        "true_negatives": 167,
+        "false_positives": 1,
+        "false_negatives": 32,
+        "true_positives": 0
+      },
+      "training_time": 0.41718554496765137,
+      "model_config": "Tree-based ensemble with high interpretability"
+    },
+    "XGBoost": {
+      "performance_metrics": {
+        "accuracy": 0.79,
+        "precision": 0.08333333333333333,
+        "recall": 0.03125,
+        "f1_score": 0.045454545454545456,
+        "roc_auc": 0.44549851190476186,
+        "specificity": 0.9345238095238095,
+        "balanced_accuracy": 0.48288690476190477
+      },
+      "confusion_matrix": {
+        "true_negatives": 157,
+        "false_positives": 11,
+        "false_negatives": 31,
+        "true_positives": 1
+      },
+      "training_time": 0.9582099914550781,
+      "model_config": "Gradient boosting with advanced regularization"
+    },
+    "Logistic Regression": {
+      "performance_metrics": {
+        "accuracy": 0.525,
+        "precision": 0.14606741573033707,
+        "recall": 0.40625,
+        "f1_score": 0.21487603305785125,
+        "roc_auc": 0.46372767857142855,
+        "specificity": 0.5476190476190477,
+        "balanced_accuracy": 0.47693452380952384
+      },
+      "confusion_matrix": {
+        "true_negatives": 92,
+        "false_positives": 76,
+        "false_negatives": 19,
+        "true_positives": 13
+      },
+      "training_time": 0.056502580642700195,
+      "model_config": "Linear model with probabilistic output"
+    },
+    "SVM": {
+      "performance_metrics": {
+        "accuracy": 0.65,
+        "precision": 0.1346153846153846,
+        "recall": 0.21875,
+        "f1_score": 0.16666666666666666,
+        "roc_auc": 0.5076264880952381,
+        "specificity": 0.7321428571428571,
+        "balanced_accuracy": 0.47544642857142855
+      },
+      "confusion_matrix": {
+        "true_negatives": 123,
+        "false_positives": 45,
+        "false_negatives": 25,
+        "true_positives": 7
+      },
+      "training_time": 1.4053537845611572,
+      "model_config": "Support Vector Machine with RBF kernel"
+    },
+    "Naive Bayes": {
+      "performance_metrics": {
+        "accuracy": 0.74,
+        "precision": 0.11538461538461539,
+        "recall": 0.09375,
+        "f1_score": 0.10344827586206896,
+        "roc_auc": 0.43991815476190477,
+        "specificity": 0.8630952380952381,
+        "balanced_accuracy": 0.47842261904761907
+      },
+      "confusion_matrix": {
+        "true_negatives": 145,
+        "false_positives": 23,
+        "false_negatives": 29,
+        "true_positives": 3
+      },
+      "training_time": 0.008440971374511719,
+      "model_config": "Probabilistic classifier assuming feature independence"
+    },
+    "KNN": {
+      "performance_metrics": {
+        "accuracy": 0.83,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "roc_auc": 0.5126488095238095,
+        "specificity": 0.9880952380952381,
+        "balanced_accuracy": 0.49404761904761907
+      },
+      "confusion_matrix": {
+        "true_negatives": 166,
+        "false_positives": 2,
+        "false_negatives": 32,
+        "true_positives": 0
+      },
+      "training_time": 0.0015227794647216797,
+      "model_config": "Instance-based learning with distance weighting"
+    }
+  },
+  "cross_validation_results": [
+    {
+      "Model": "Random Forest",
+      "F1_Mean": 0.0,
+      "F1_Std": 0.0,
+      "ROC_AUC_Mean": 0.5228,
+      "ROC_AUC_Std": 0.101,
+      "Accuracy_Mean": 0.835,
+      "Accuracy_Std": 0.0062,
+      "F1_Overfitting": 0.9906,
+      "ROC_Overfitting": 0.4772,
+      "CV_Time": 3.9232
+    },
+    {
+      "Model": "XGBoost",
+      "F1_Mean": 0.1104,
+      "F1_Std": 0.052,
+      "ROC_AUC_Mean": 0.5006,
+      "ROC_AUC_Std": 0.0492,
+      "Accuracy_Mean": 0.7867,
+      "Accuracy_Std": 0.0201,
+      "F1_Overfitting": 0.8883,
+      "ROC_Overfitting": 0.4994,
+      "CV_Time": 3.417
+    },
+    {
+      "Model": "Logistic Regression",
+      "F1_Mean": 0.2585,
+      "F1_Std": 0.0343,
+      "ROC_AUC_Mean": 0.5217,
+      "ROC_AUC_Std": 0.0507,
+      "Accuracy_Mean": 0.5717,
+      "Accuracy_Std": 0.0113,
+      "F1_Overfitting": 0.1125,
+      "ROC_Overfitting": 0.1777,
+      "CV_Time": 0.866
+    },
+    {
+      "Model": "SVM",
+      "F1_Mean": 0.2033,
+      "F1_Std": 0.0883,
+      "ROC_AUC_Mean": 0.4785,
+      "ROC_AUC_Std": 0.0583,
+      "Accuracy_Mean": 0.6867,
+      "Accuracy_Std": 0.0449,
+      "F1_Overfitting": 0.5538,
+      "ROC_Overfitting": 0.5058,
+      "CV_Time": 3.7445
+    },
+    {
+      "Model": "Naive Bayes",
+      "F1_Mean": 0.2773,
+      "F1_Std": 0.0786,
+      "ROC_AUC_Mean": 0.5339,
+      "ROC_AUC_Std": 0.0813,
+      "Accuracy_Mean": 0.7733,
+      "Accuracy_Std": 0.0347,
+      "F1_Overfitting": 0.0641,
+      "ROC_Overfitting": 0.1253,
+      "CV_Time": 0.4532
+    },
+    {
+      "Model": "KNN",
+      "F1_Mean": 0.019,
+      "F1_Std": 0.0381,
+      "ROC_AUC_Mean": 0.425,
+      "ROC_AUC_Std": 0.0493,
+      "Accuracy_Mean": 0.8283,
+      "Accuracy_Std": 0.01,
+      "F1_Overfitting": 0.981,
+      "ROC_Overfitting": 0.575,
+      "CV_Time": 0.4212
+    }
+  ],
+  "business_analysis": {
+    "business_assumptions": {
+      "avg_employee_salary": 75000,
+      "replacement_cost_factor": 1.5,
+      "intervention_cost": 2000,
+      "intervention_success_rate": 0.6,
+      "current_attrition_rate": 0.15875,
+      "total_employees": 1000
+    },
+    "business_analysis": {
+      "Random Forest": {
+        "tp_scaled": 0,
+        "tn_scaled": 835,
+        "fp_scaled": 5,
+        "fn_scaled": 160,
+        "prevented_attrition": 0,
+        "baseline_cost": 17775000.0,
+        "total_cost_with_model": 18010000.0,
+        "total_savings": -235000.0,
+        "savings_per_employee": -235.0,
+        "roi_percent": -2350.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0
+      },
+      "XGBoost": {
+        "tp_scaled": 5,
+        "tn_scaled": 785,
+        "fp_scaled": 55,
+        "fn_scaled": 155,
+        "prevented_attrition": 3,
+        "baseline_cost": 17775000.0,
+        "total_cost_with_model": 17782500.0,
+        "total_savings": -7500.0,
+        "savings_per_employee": -7.5,
+        "roi_percent": -6.25,
+        "precision": 0.08333333333333333,
+        "recall": 0.03125,
+        "f1_score": 0.045454545454545456
+      },
+      "Logistic Regression": {
+        "tp_scaled": 65,
+        "tn_scaled": 460,
+        "fp_scaled": 380,
+        "fn_scaled": 95,
+        "prevented_attrition": 39,
+        "baseline_cost": 17775000.0,
+        "total_cost_with_model": 14502500.0,
+        "total_savings": 3272500.0,
+        "savings_per_employee": 3272.5,
+        "roi_percent": 367.69662921348316,
+        "precision": 0.14606741573033707,
+        "recall": 0.40625,
+        "f1_score": 0.21487603305785125
+      },
+      "SVM": {
+        "tp_scaled": 35,
+        "tn_scaled": 615,
+        "fp_scaled": 225,
+        "fn_scaled": 125,
+        "prevented_attrition": 21,
+        "baseline_cost": 17775000.0,
+        "total_cost_with_model": 16157500.0,
+        "total_savings": 1617500.0,
+        "savings_per_employee": 1617.5,
+        "roi_percent": 311.05769230769226,
+        "precision": 0.1346153846153846,
+        "recall": 0.21875,
+        "f1_score": 0.16666666666666666
+      },
+      "Naive Bayes": {
+        "tp_scaled": 15,
+        "tn_scaled": 725,
+        "fp_scaled": 115,
+        "fn_scaled": 145,
+        "prevented_attrition": 9,
+        "baseline_cost": 17775000.0,
+        "total_cost_with_model": 17247500.0,
+        "total_savings": 527500.0,
+        "savings_per_employee": 527.5,
+        "roi_percent": 202.8846153846154,
+        "precision": 0.11538461538461539,
+        "recall": 0.09375,
+        "f1_score": 0.10344827586206896
+      },
+      "KNN": {
+        "tp_scaled": 0,
+        "tn_scaled": 830,
+        "fp_scaled": 10,
+        "fn_scaled": 160,
+        "prevented_attrition": 0,
+        "baseline_cost": 17775000.0,
+        "total_cost_with_model": 18020000.0,
+        "total_savings": -245000.0,
+        "savings_per_employee": -245.0,
+        "roi_percent": -1225.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0
+      }
+    },
+    "best_models": {
+      "technical_best": "Logistic Regression",
+      "business_best": "Logistic Regression",
+      "most_stable": "Random Forest"
+    },
+    "recommendations": [
+      {
+        "category": "Model Selection",
+        "priority": "High",
+        "recommendation": "Deploy Logistic Regression as it excels in both technical performance and business value.",
+        "expected_impact": "$3,272,500 annual savings"
+      },
+      {
+        "category": "Threshold Optimization",
+        "priority": "Medium",
+        "recommendation": "Fine-tune prediction threshold to balance precision and recall based on business priorities. Balanced precision/recall - current threshold appears optimal.",
+        "expected_impact": "10-15% improvement in business value"
+      },
+      {
+        "category": "Implementation",
+        "priority": "High",
+        "recommendation": "Implement Logistic Regression with monthly prediction cycles and quarterly model retraining.",
+        "expected_impact": "Continuous improvement and adaptation to changing patterns"
+      },
+      {
+        "category": "Monitoring",
+        "priority": "Medium",
+        "recommendation": "Establish model monitoring for performance drift, feature importance changes, and prediction accuracy.",
+        "expected_impact": "Maintain 90%+ model effectiveness over time"
+      },
+      {
+        "category": "Feature Enhancement",
+        "priority": "Low",
+        "recommendation": "Conduct feature importance analysis and focus on collecting high-impact employee data.",
+        "expected_impact": "5-10% improvement in prediction accuracy"
+      }
+    ],
+    "projected_annual_savings": 3272500.0,
+    "projected_roi": 367.7
+  },
+  "recommendations": [
+    {
+      "category": "Model Selection",
+      "priority": "High",
+      "recommendation": "Deploy Logistic Regression as it excels in both technical performance and business value.",
+      "expected_impact": "$3,272,500 annual savings"
+    },
+    {
+      "category": "Threshold Optimization",
+      "priority": "Medium",
+      "recommendation": "Fine-tune prediction threshold to balance precision and recall based on business priorities. Balanced precision/recall - current threshold appears optimal.",
+      "expected_impact": "10-15% improvement in business value"
+    },
+    {
+      "category": "Implementation",
+      "priority": "High",
+      "recommendation": "Implement Logistic Regression with monthly prediction cycles and quarterly model retraining.",
+      "expected_impact": "Continuous improvement and adaptation to changing patterns"
+    },
+    {
+      "category": "Monitoring",
+      "priority": "Medium",
+      "recommendation": "Establish model monitoring for performance drift, feature importance changes, and prediction accuracy.",
+      "expected_impact": "Maintain 90%+ model effectiveness over time"
+    },
+    {
+      "category": "Feature Enhancement",
+      "priority": "Low",
+      "recommendation": "Conduct feature importance analysis and focus on collecting high-impact employee data.",
+      "expected_impact": "5-10% improvement in prediction accuracy"
+    }
+  ],
+  "feature_analysis": {
+    "feature_count": 41,
+    "categorical_features": [
+      "Department",
+      "JobRole",
+      "PerformanceRating",
+      "JobSatisfaction",
+      "WorkLifeBalance",
+      "EnvironmentSatisfaction",
+      "OverTime",
+      "Gender",
+      "MaritalStatus",
+      "Satisfaction_Score",
+      "Income_Quartile",
+      "Age_Group",
+      "Tenure_Group",
+      "Performance_Category",
+      "Distance_Category",
+      "Satisfaction_Level",
+      "High_Overtime_Risk",
+      "Low_Satisfaction_Risk",
+      "High_Distance_Risk",
+      "Stagnation_Risk",
+      "Dept_Role_Combo",
+      "Age_Income_Segment",
+      "Performance_Satisfaction",
+      "WorkLife_Combined_Score",
+      "Senior_High_Performer",
+      "Composite_Risk_Score",
+      "Risk_Level"
+    ],
+    "numerical_features": [
+      "Age",
+      "MonthlyIncome",
+      "YearsAtCompany",
+      "YearsInCurrentRole",
+      "YearsSinceLastPromotion",
+      "DistanceFromHome",
+      "TotalWorkingYears",
+      "Income_to_Age_Ratio",
+      "Tenure_to_Age_Ratio",
+      "Role_Tenure_Ratio",
+      "Experience_to_Age_Ratio",
+      "Promotion_Frequency",
+      "Income_Z_Score",
+      "Distance_WorkLife_Impact"
+    ],
+    "feature_names": [
+      "Age",
+      "Department",
+      "JobRole",
+      "MonthlyIncome",
+      "YearsAtCompany",
+      "YearsInCurrentRole",
+      "YearsSinceLastPromotion",
+      "PerformanceRating",
+      "JobSatisfaction",
+      "WorkLifeBalance",
+      "EnvironmentSatisfaction",
+      "OverTime",
+      "Gender",
+      "MaritalStatus",
+      "DistanceFromHome",
+      "TotalWorkingYears",
+      "Income_to_Age_Ratio",
+      "Tenure_to_Age_Ratio",
+      "Role_Tenure_Ratio",
+      "Experience_to_Age_Ratio",
+      "Promotion_Frequency",
+      "Satisfaction_Score",
+      "Income_Quartile",
+      "Income_Z_Score",
+      "Distance_WorkLife_Impact",
+      "Age_Group",
+      "Tenure_Group",
+      "Performance_Category",
+      "Distance_Category",
+      "Satisfaction_Level",
+      "High_Overtime_Risk",
+      "Low_Satisfaction_Risk",
+      "High_Distance_Risk",
+      "Stagnation_Risk",
+      "Dept_Role_Combo",
+      "Age_Income_Segment",
+      "Performance_Satisfaction",
+      "WorkLife_Combined_Score",
+      "Senior_High_Performer",
+      "Composite_Risk_Score",
+      "Risk_Level"
+    ]
+  }
+}

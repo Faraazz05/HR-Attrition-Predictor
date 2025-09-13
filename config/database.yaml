@@ -1,0 +1,701 @@
+# HR Attrition Predictor - Database Configuration
+# =============================================
+# Comprehensive database configuration for all environments
+# Author: HR Analytics Team
+# Date: September 2025
+# Version: 2.0
+
+# ================================================================
+# DATABASE CONFIGURATION METADATA
+# ================================================================
+
+config_metadata:
+  version: "2.0"
+  created_date: "2025-09-14"
+  last_updated: "2025-09-14T02:20:00Z"
+  created_by: "HR Analytics Team"
+  description: "Database configuration for HR Attrition Predictor system"
+  schema_version: "1.0"
+
+# ================================================================
+# ENVIRONMENT SETTINGS
+# ================================================================
+
+environments:
+  # Development Environment
+  development:
+    enabled: true
+    debug: true
+    echo_queries: true
+    auto_migrate: true
+    
+  # Staging Environment  
+  staging:
+    enabled: true
+    debug: false
+    echo_queries: false
+    auto_migrate: false
+    
+  # Production Environment
+  production:
+    enabled: true
+    debug: false
+    echo_queries: false
+    auto_migrate: false
+
+# Current active environment
+active_environment: ${DB_ENV:-development}
+
+# ================================================================
+# PRIMARY DATABASE CONFIGURATION (PostgreSQL)
+# ================================================================
+
+primary_database:
+  # Connection Parameters
+  connection:
+    type: "postgresql"
+    driver: "psycopg2"
+    host: ${DB_HOST:-localhost}
+    port: ${DB_PORT:-5432}
+    database: ${DB_NAME:-hr_predictor}
+    username: ${DB_USER:-hr_user}
+    password: ${DB_PASSWORD:-secure_password_123}
+    
+    # SSL Configuration
+    ssl_mode: ${DB_SSL_MODE:-prefer}
+    ssl_cert: ${DB_SSL_CERT:-}
+    ssl_key: ${DB_SSL_KEY:-}
+    ssl_ca: ${DB_SSL_CA:-}
+    
+    # Connection URL (alternative to individual parameters)
+    url: ${DATABASE_URL:-}
+  
+  # Connection Pool Settings
+  pool:
+    size: ${DB_POOL_SIZE:-10}
+    max_overflow: ${DB_MAX_OVERFLOW:-20}
+    timeout: ${DB_POOL_TIMEOUT:-30}
+    recycle: ${DB_POOL_RECYCLE:-3600}
+    pre_ping: ${DB_POOL_PRE_PING:-true}
+    echo_pool: false
+    
+  # SQLAlchemy Settings
+  sqlalchemy:
+    echo: false
+    echo_pool: false
+    future: true
+    json_serializer: "json"
+    json_deserializer: "json"
+    
+    # Engine Options
+    engine_options:
+      isolation_level: "READ_COMMITTED"
+      client_encoding: "utf8"
+      connect_timeout: 30
+      command_timeout: 300
+      
+  # Query Settings
+  query:
+    timeout: 300  # seconds
+    max_rows: 100000
+    batch_size: 1000
+    fetch_size: 10000
+    
+  # Performance Tuning
+  performance:
+    shared_buffers: "256MB"
+    effective_cache_size: "1GB"
+    work_mem: "4MB" 
+    maintenance_work_mem: "64MB"
+    checkpoint_completion_target: 0.7
+    wal_buffers: "16MB"
+    default_statistics_target: 100
+    random_page_cost: 1.1
+    effective_io_concurrency: 200
+
+# ================================================================
+# CACHE DATABASE CONFIGURATION (Redis)
+# ================================================================
+
+cache_database:
+  # Connection Parameters
+  connection:
+    type: "redis"
+    host: ${REDIS_HOST:-localhost}
+    port: ${REDIS_PORT:-6379}
+    database: ${REDIS_DB:-0}
+    password: ${REDIS_PASSWORD:-}
+    username: ${REDIS_USERNAME:-}
+    
+    # SSL Configuration for Redis
+    ssl: ${REDIS_SSL:-false}
+    ssl_certfile: ${REDIS_SSL_CERT:-}
+    ssl_keyfile: ${REDIS_SSL_KEY:-}
+    ssl_ca_certs: ${REDIS_SSL_CA:-}
+    
+  # Connection Pool
+  pool:
+    max_connections: ${REDIS_MAX_CONNECTIONS:-50}
+    retry_on_timeout: true
+    socket_timeout: 30
+    socket_connect_timeout: 30
+    socket_keepalive: true
+    socket_keepalive_options: {}
+    
+  # Cache Settings
+  cache:
+    default_timeout: 3600  # 1 hour
+    key_prefix: "hr_predictor:"
+    serializer: "pickle"
+    
+    # Cache Strategies
+    strategies:
+      model_predictions:
+        timeout: 1800  # 30 minutes
+        key_pattern: "predictions:{employee_id}"
+        
+      employee_data:
+        timeout: 3600  # 1 hour
+        key_pattern: "employee:{employee_id}"
+        
+      reports:
+        timeout: 7200  # 2 hours
+        key_pattern: "report:{report_type}:{date}"
+        
+      analytics:
+        timeout: 1800  # 30 minutes
+        key_pattern: "analytics:{metric}:{period}"
+  
+  # Memory Management
+  memory:
+    max_memory: ${REDIS_MAX_MEMORY:-512mb}
+    max_memory_policy: "allkeys-lru"
+    save_schedule:
+      - "900 1"    # Save if at least 1 key changed in 900 seconds
+      - "300 10"   # Save if at least 10 keys changed in 300 seconds
+      - "60 10000" # Save if at least 10000 keys changed in 60 seconds
+
+# ================================================================
+# ANALYTICS DATABASE (Optional - ClickHouse/TimeSeries)
+# ================================================================
+
+analytics_database:
+  enabled: ${ANALYTICS_DB_ENABLED:-false}
+  
+  connection:
+    type: "clickhouse"
+    host: ${ANALYTICS_DB_HOST:-localhost}
+    port: ${ANALYTICS_DB_PORT:-8123}
+    database: ${ANALYTICS_DB_NAME:-hr_analytics}
+    username: ${ANALYTICS_DB_USER:-analytics_user}
+    password: ${ANALYTICS_DB_PASSWORD:-analytics_password}
+    
+  # Time-series specific settings
+  timeseries:
+    retention_policy: "30d"  # Keep data for 30 days
+    aggregation_intervals:
+      - "1h"   # Hourly aggregations
+      - "1d"   # Daily aggregations
+      - "1w"   # Weekly aggregations
+    
+    # Metrics to track
+    metrics:
+      - "prediction_requests"
+      - "model_accuracy"
+      - "response_times"
+      - "user_activity"
+      - "email_deliveries"
+
+# ================================================================
+# DATABASE SCHEMAS AND TABLES
+# ================================================================
+
+schemas:
+  # Main application schema
+  main:
+    name: "hr_predictor"
+    tables:
+      employees:
+        description: "Employee master data"
+        columns:
+          employee_id: "VARCHAR(50) PRIMARY KEY"
+          first_name: "VARCHAR(100) NOT NULL"
+          last_name: "VARCHAR(100) NOT NULL"
+          email: "VARCHAR(255) UNIQUE NOT NULL"
+          department: "VARCHAR(100)"
+          job_role: "VARCHAR(100)"
+          hire_date: "DATE"
+          created_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+          updated_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "email"
+          - "department"
+          - "hire_date"
+          
+      predictions:
+        description: "ML model predictions"
+        columns:
+          prediction_id: "SERIAL PRIMARY KEY"
+          employee_id: "VARCHAR(50) REFERENCES employees(employee_id)"
+          model_name: "VARCHAR(100)"
+          prediction_date: "TIMESTAMP"
+          attrition_probability: "DECIMAL(5,4)"
+          risk_level: "VARCHAR(20)"
+          confidence_score: "DECIMAL(5,4)"
+          features_json: "JSONB"
+          created_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "employee_id"
+          - "prediction_date"
+          - "risk_level"
+          - "model_name"
+          
+      model_metrics:
+        description: "Model performance metrics"
+        columns:
+          metric_id: "SERIAL PRIMARY KEY"
+          model_name: "VARCHAR(100)"
+          metric_name: "VARCHAR(100)"
+          metric_value: "DECIMAL(10,6)"
+          evaluation_date: "TIMESTAMP"
+          dataset_size: "INTEGER"
+          created_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "model_name"
+          - "evaluation_date"
+          - "metric_name"
+          
+      email_logs:
+        description: "Email notification logs"
+        columns:
+          log_id: "SERIAL PRIMARY KEY"
+          recipient_email: "VARCHAR(255)"
+          subject: "TEXT"
+          template_name: "VARCHAR(100)"
+          sent_at: "TIMESTAMP"
+          delivery_status: "VARCHAR(50)"
+          opened_at: "TIMESTAMP"
+          clicked_at: "TIMESTAMP"
+          error_message: "TEXT"
+          created_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "recipient_email"
+          - "sent_at"
+          - "delivery_status"
+          - "template_name"
+          
+      user_sessions:
+        description: "User session tracking"
+        columns:
+          session_id: "VARCHAR(255) PRIMARY KEY"
+          user_id: "VARCHAR(100)"
+          login_time: "TIMESTAMP"
+          logout_time: "TIMESTAMP"
+          ip_address: "INET"
+          user_agent: "TEXT"
+          actions_count: "INTEGER DEFAULT 0"
+          created_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "user_id"
+          - "login_time"
+          - "ip_address"
+          
+      audit_logs:
+        description: "System audit logs"
+        columns:
+          log_id: "SERIAL PRIMARY KEY"
+          user_id: "VARCHAR(100)"
+          action: "VARCHAR(100)"
+          resource: "VARCHAR(100)"
+          resource_id: "VARCHAR(100)"
+          old_values: "JSONB"
+          new_values: "JSONB"
+          ip_address: "INET"
+          timestamp: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "user_id"
+          - "action"
+          - "resource"
+          - "timestamp"
+  
+  # Analytics schema
+  analytics:
+    name: "hr_analytics"
+    tables:
+      daily_metrics:
+        description: "Daily aggregated metrics"
+        columns:
+          date: "DATE PRIMARY KEY"
+          total_employees: "INTEGER"
+          predictions_generated: "INTEGER"
+          high_risk_count: "INTEGER"
+          emails_sent: "INTEGER"
+          model_accuracy: "DECIMAL(5,4)"
+          created_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "date"
+          
+      feature_importance:
+        description: "Feature importance over time"
+        columns:
+          importance_id: "SERIAL PRIMARY KEY"
+          model_name: "VARCHAR(100)"
+          feature_name: "VARCHAR(100)"
+          importance_score: "DECIMAL(10,6)"
+          calculation_date: "TIMESTAMP"
+          created_at: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+        indexes:
+          - "model_name"
+          - "feature_name"
+          - "calculation_date"
+
+# ================================================================
+# MIGRATION SETTINGS
+# ================================================================
+
+migrations:
+  # Migration Configuration
+  enabled: true
+  auto_upgrade: ${DB_AUTO_MIGRATE:-false}
+  backup_before_migration: true
+  
+  # Migration Directories
+  directories:
+    versions: "migrations/versions"
+    scripts: "migrations/scripts"
+    backups: "migrations/backups"
+  
+  # Migration Options
+  options:
+    create_tables: true
+    drop_tables: false
+    alter_tables: true
+    create_indexes: true
+    
+  # Version Control
+  version_control:
+    table_name: "alembic_version"
+    track_changes: true
+    
+# ================================================================
+# BACKUP AND RECOVERY
+# ================================================================
+
+backup:
+  # Backup Configuration
+  enabled: ${DB_BACKUP_ENABLED:-true}
+  
+  # Backup Schedule (cron format)
+  schedule:
+    full_backup: "0 2 * * 0"     # Weekly full backup (Sunday 2 AM)
+    incremental: "0 2 * * 1-6"   # Daily incremental (Mon-Sat 2 AM)
+    
+  # Backup Storage
+  storage:
+    type: ${BACKUP_STORAGE_TYPE:-local}  # local, s3, gcs, azure
+    
+    # Local storage
+    local:
+      path: ${BACKUP_LOCAL_PATH:-./backups}
+      
+    # S3 storage
+    s3:
+      bucket: ${BACKUP_S3_BUCKET:-hr-predictor-backups}
+      region: ${BACKUP_S3_REGION:-us-east-1}
+      access_key: ${BACKUP_S3_ACCESS_KEY:-}
+      secret_key: ${BACKUP_S3_SECRET_KEY:-}
+      
+  # Retention Policy
+  retention:
+    full_backups: 12      # Keep 12 weekly full backups (3 months)
+    incremental: 30       # Keep 30 daily incrementals
+    transaction_logs: 7   # Keep 7 days of transaction logs
+    
+  # Backup Options
+  options:
+    compression: true
+    encryption: ${BACKUP_ENCRYPTION:-false}
+    verify_integrity: true
+    parallel_jobs: 2
+
+# ================================================================
+# MONITORING AND HEALTH CHECKS
+# ================================================================
+
+monitoring:
+  # Health Check Settings
+  health_checks:
+    enabled: true
+    interval: 30  # seconds
+    timeout: 10   # seconds
+    
+    # Health check queries
+    queries:
+      primary_db: "SELECT 1"
+      cache_db: "PING"
+      
+  # Performance Monitoring
+  performance:
+    enabled: true
+    
+    # Metrics to collect
+    metrics:
+      - connection_count
+      - active_queries
+      - query_duration
+      - cache_hit_ratio
+      - disk_usage
+      - memory_usage
+      
+    # Thresholds for alerts
+    thresholds:
+      max_connections: 80      # Percentage
+      slow_query_time: 5       # Seconds
+      cache_hit_ratio: 0.85    # Minimum ratio
+      disk_usage: 85           # Percentage
+      
+  # Logging
+  logging:
+    enabled: true
+    level: ${DB_LOG_LEVEL:-INFO}
+    
+    # Log destinations
+    destinations:
+      - file
+      - database
+      - console
+      
+    # Log rotation
+    rotation:
+      max_size: "100MB"
+      backup_count: 5
+      
+# ================================================================
+# SECURITY CONFIGURATION
+# ================================================================
+
+security:
+  # Authentication
+  authentication:
+    method: "password"  # password, certificate, ldap
+    require_ssl: ${DB_REQUIRE_SSL:-false}
+    
+  # Authorization
+  authorization:
+    enable_rbac: true
+    
+    # Database roles
+    roles:
+      admin:
+        permissions: ["ALL"]
+        users: ["${DB_ADMIN_USER:-db_admin}"]
+        
+      application:
+        permissions: ["SELECT", "INSERT", "UPDATE", "DELETE"]
+        users: ["${DB_USER:-hr_user}"]
+        
+      readonly:
+        permissions: ["SELECT"]
+        users: ["${DB_READONLY_USER:-hr_readonly}"]
+        
+      analytics:
+        permissions: ["SELECT"]
+        schemas: ["hr_analytics"]
+        users: ["${ANALYTICS_DB_USER:-analytics_user}"]
+  
+  # Encryption
+  encryption:
+    at_rest: ${DB_ENCRYPTION_AT_REST:-false}
+    in_transit: ${DB_ENCRYPTION_IN_TRANSIT:-true}
+    
+    # Encryption keys
+    keys:
+      master_key: ${DB_MASTER_KEY:-}
+      column_key: ${DB_COLUMN_KEY:-}
+      
+  # Audit Settings
+  audit:
+    enabled: true
+    
+    # Events to audit
+    events:
+      - login
+      - logout  
+      - data_access
+      - data_modification
+      - schema_changes
+      - permission_changes
+      
+    # Audit retention
+    retention_days: 90
+    
+  # Data Masking (for non-production environments)
+  data_masking:
+    enabled: ${DB_DATA_MASKING:-false}
+    
+    # Fields to mask
+    mask_fields:
+      - email
+      - phone
+      - ssn
+      - employee_id
+
+# ================================================================
+# ENVIRONMENT-SPECIFIC OVERRIDES
+# ================================================================
+
+# Development Environment Overrides
+development_overrides:
+  primary_database:
+    connection:
+      database: "hr_predictor_dev"
+    sqlalchemy:
+      echo: true
+    
+  cache_database:
+    connection:
+      database: 1
+      
+  backup:
+    enabled: false
+    
+  security:
+    data_masking:
+      enabled: false
+
+# Staging Environment Overrides  
+staging_overrides:
+  primary_database:
+    connection:
+      database: "hr_predictor_staging"
+    pool:
+      size: 5
+      
+  cache_database:
+    connection:
+      database: 2
+      
+  security:
+    data_masking:
+      enabled: true
+      
+# Production Environment Overrides
+production_overrides:
+  primary_database:
+    connection:
+      database: "hr_predictor_prod"
+    pool:
+      size: 20
+      max_overflow: 50
+      
+  cache_database:
+    connection:
+      database: 0
+    memory:
+      max_memory: "2gb"
+      
+  backup:
+    enabled: true
+    storage:
+      type: "s3"
+      
+  security:
+    authentication:
+      require_ssl: true
+    encryption:
+      at_rest: true
+      in_transit: true
+    audit:
+      enabled: true
+
+# ================================================================
+# CONNECTION STRINGS (Auto-generated)
+# ================================================================
+
+# Note: These are generated from the configuration above
+# Do not modify directly - update the connection parameters instead
+
+connection_strings:
+  primary: "postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
+  cache: "redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB}"
+  analytics: "clickhouse://${ANALYTICS_DB_USER}:${ANALYTICS_DB_PASSWORD}@${ANALYTICS_DB_HOST}:${ANALYTICS_DB_PORT}/${ANALYTICS_DB_NAME}"
+
+# ================================================================
+# TESTING CONFIGURATION
+# ================================================================
+
+testing:
+  # Test Database Settings
+  database:
+    type: "sqlite"
+    path: ":memory:"  # In-memory for faster tests
+    
+  # Test Data
+  fixtures:
+    load_sample_data: true
+    sample_size: 100
+    
+  # Test-specific overrides
+  overrides:
+    cache_database:
+      connection:
+        type: "memory"  # Use in-memory cache for tests
+        
+# ================================================================
+# PERFORMANCE OPTIMIZATION
+# ================================================================
+
+optimization:
+  # Query Optimization
+  query:
+    enable_query_cache: true
+    query_cache_size: "100MB"
+    enable_prepared_statements: true
+    
+  # Connection Optimization  
+  connection:
+    connection_lifetime: 3600
+    idle_timeout: 600
+    
+  # Index Optimization
+  indexes:
+    auto_analyze: true
+    auto_vacuum: true
+    
+    # Maintenance schedules
+    maintenance:
+      analyze: "0 1 * * *"      # Daily at 1 AM
+      vacuum: "0 3 * * 0"       # Weekly on Sunday at 3 AM
+      reindex: "0 4 * * 0"      # Weekly on Sunday at 4 AM
+
+# ================================================================
+# DEVELOPMENT TOOLS
+# ================================================================
+
+development:
+  # Database Tools
+  tools:
+    admin_interface: true
+    query_profiler: true
+    migration_generator: true
+    
+  # Development Database
+  dev_database:
+    auto_create: true
+    reset_on_restart: false
+    seed_data: true
+    
+  # Development Cache
+  dev_cache:
+    flush_on_restart: true
+    
+# ================================================================
+# END OF CONFIGURATION
+# ================================================================
+
+# Additional Notes:
+# - All ${VAR:-default} syntax allows environment variable overrides
+# - Sensitive values should be set via environment variables
+# - This configuration supports multiple deployment scenarios
+# - Schema definitions are used for automatic table creation
+# - Monitoring settings integrate with application health checks

@@ -1,0 +1,932 @@
+# HR Attrition Predictor - Main Configuration Hub
+# ==============================================
+# Central configuration file for all application settings
+# Author: HR Analytics Team
+# Date: September 2025
+# Version: 2.0
+
+# ================================================================
+# APPLICATION METADATA
+# ================================================================
+
+app:
+  name: "HR Attrition Predictor"
+  version: "2.0"
+  description: "AI-powered employee retention analytics with cyberpunk UI"
+  author: "HR Analytics Team"
+  created_date: "2025-09-13"
+  environment: ${APP_ENV:-production}  # development, staging, production
+  debug: ${DEBUG:-false}
+  timezone: ${TIMEZONE:-Asia/Kolkata}
+  
+  # Feature flags
+  features:
+    synthetic_data_generation: ${ENABLE_SYNTHETIC_DATA:-true}
+    email_notifications: ${ENABLE_EMAIL_NOTIFICATIONS:-false}
+    model_monitoring: ${ENABLE_MODEL_MONITORING:-true}
+    performance_tracking: ${ENABLE_PERFORMANCE_TRACKING:-true}
+    admin_panel: ${ENABLE_ADMIN_PANEL:-true}
+    user_authentication: ${ENABLE_USER_AUTH:-false}
+    api_endpoints: ${ENABLE_API:-false}
+    real_time_predictions: ${ENABLE_REAL_TIME:-true}
+
+# ================================================================
+# DATA CONFIGURATION
+# ================================================================
+
+data:
+  # Data paths
+  paths:
+    root: "data/"
+    raw: "data/raw/"
+    processed: "data/processed/"
+    synthetic: "data/synthetic/"
+    exports: "data/exports/"
+    backup: "data/backup/"
+    cache: "data/cache/"
+    
+  # File configurations
+  files:
+    # Main data files
+    employee_data: "hr_employees.csv"
+    attrition_data: "attrition_data.csv"
+    performance_data: "performance_metrics.csv"
+    
+    # Processed files
+    cleaned_data: "cleaned_hr_data.csv"
+    feature_engineered: "featured_data.csv"
+    train_data: "train_dataset.csv"
+    test_data: "test_dataset.csv"
+    validation_data: "validation_dataset.csv"
+    
+    # Synthetic data
+    synthetic_employees: "synthetic_hr_employees.csv"
+    synthetic_attrition: "synthetic_attrition_data.csv"
+  
+  # Data quality settings
+  quality:
+    max_missing_percentage: 20  # Maximum allowed missing values percentage
+    min_records: 100  # Minimum number of records required
+    outlier_threshold: 3.0  # Z-score threshold for outlier detection
+    duplicate_threshold: 0.05  # Maximum allowed duplicate percentage
+    
+  # Data validation rules
+  validation:
+    required_columns:
+      - "EmployeeID"
+      - "Age"
+      - "Department"
+      - "JobRole"
+      - "MonthlyIncome"
+      - "YearsAtCompany"
+      - "Attrition"
+    
+    data_types:
+      EmployeeID: "string"
+      Age: "int"
+      MonthlyIncome: "float"
+      YearsAtCompany: "int"
+      Attrition: "string"
+    
+    value_ranges:
+      Age: [16, 100]
+      MonthlyIncome: [1000, 50000]
+      YearsAtCompany: [0, 50]
+      PerformanceRating: [1, 5]
+      JobSatisfaction: [1, 5]
+      WorkLifeBalance: [1, 4]
+
+  # Synthetic data generation parameters
+  synthetic:
+    enabled: ${ENABLE_SYNTHETIC_DATA:-true}
+    sample_size: 1000
+    random_seed: 42
+    attrition_rate: 0.16  # 16% attrition rate
+    
+    # Distribution parameters
+    age_distribution:
+      mean: 37
+      std: 12
+      min: 18
+      max: 65
+    
+    income_distribution:
+      mean: 7500
+      std: 2500
+      min: 3000
+      max: 25000
+    
+    tenure_distribution:
+      shape: 2  # Gamma distribution shape
+      scale: 3  # Gamma distribution scale
+
+# ================================================================
+# MODEL CONFIGURATION
+# ================================================================
+
+models:
+  # Model storage paths
+  paths:
+    root: "models/"
+    saved: "models/saved/"
+    checkpoints: "models/checkpoints/"
+    artifacts: "models/artifacts/"
+    experiments: "models/experiments/"
+    
+  # Random seed for reproducibility
+  random_seed: 42
+  
+  # Model selection
+  default_model: "xgboost"  # xgboost, random_forest, logistic_regression, ensemble
+  
+  # Cross-validation settings
+  cross_validation:
+    folds: 5
+    shuffle: true
+    stratify: true
+    random_state: 42
+  
+  # Train/test split
+  data_split:
+    test_size: 0.2
+    validation_size: 0.1
+    stratify: true
+    random_state: 42
+  
+  # Model parameters
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+    n_jobs: -1
+    early_stopping_rounds: 10
+    eval_metric: "auc"
+    
+  random_forest:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 5
+    min_samples_leaf: 2
+    random_state: 42
+    n_jobs: -1
+    class_weight: "balanced"
+    
+  logistic_regression:
+    C: 1.0
+    penalty: "l2"
+    solver: "liblinear"
+    random_state: 42
+    max_iter: 1000
+    class_weight: "balanced"
+    
+  gradient_boosting:
+    n_estimators: 100
+    learning_rate: 0.1
+    max_depth: 5
+    subsample: 0.8
+    random_state: 42
+    
+  svm:
+    C: 1.0
+    kernel: "rbf"
+    probability: true
+    random_state: 42
+    class_weight: "balanced"
+    
+  neural_network:
+    hidden_layer_sizes: [100, 50]
+    activation: "relu"
+    solver: "adam"
+    alpha: 0.001
+    learning_rate: "adaptive"
+    max_iter: 500
+    random_state: 42
+  
+  # Ensemble configuration
+  ensemble:
+    method: "voting"  # voting, stacking, bagging
+    models:
+      - "xgboost"
+      - "random_forest"
+      - "logistic_regression"
+    voting: "soft"  # hard, soft
+    
+    # Stacking configuration
+    stacking:
+      final_estimator: "logistic_regression"
+      cv: 5
+      n_jobs: -1
+  
+  # Hyperparameter optimization
+  optimization:
+    enabled: false
+    method: "optuna"  # optuna, grid_search, random_search
+    n_trials: 100
+    timeout: 3600  # seconds
+    direction: "maximize"
+    metric: "roc_auc"
+    
+    # Optuna specific
+    optuna:
+      sampler: "TPE"  # TPE, Random, CmaEs
+      pruner: "MedianPruner"
+      n_startup_trials: 10
+      n_warmup_steps: 10
+  
+  # Model monitoring
+  monitoring:
+    enabled: ${ENABLE_MODEL_MONITORING:-true}
+    drift_detection:
+      enabled: true
+      threshold: 0.1
+      window_size: 1000
+      statistical_test: "ks"  # ks, psi, wasserstein
+    
+    performance_tracking:
+      enabled: true
+      metrics:
+        - "accuracy"
+        - "precision"
+        - "recall"
+        - "f1_score"
+        - "roc_auc"
+      alert_threshold: 0.05  # Performance drop threshold
+    
+    retraining:
+      auto_retrain: ${AUTO_RETRAIN:-false}
+      retrain_threshold: 0.1
+      min_samples: 1000
+      schedule: "weekly"  # daily, weekly, monthly
+
+# ================================================================
+# FEATURE ENGINEERING
+# ================================================================
+
+features:
+  # Feature selection
+  selection:
+    enabled: true
+    method: "mutual_info"  # mutual_info, chi2, f_classif, rfe
+    k_best: 20
+    threshold: 0.01
+  
+  # Feature scaling
+  scaling:
+    method: "standard"  # standard, minmax, robust, quantile
+    
+  # Feature encoding
+  encoding:
+    categorical:
+      method: "onehot"  # onehot, label, target, ordinal
+      handle_unknown: "ignore"
+      drop_first: true
+    
+    ordinal_mappings:
+      Education:
+        "Below College": 1
+        "College": 2
+        "Bachelor": 3
+        "Master": 4
+        "Doctor": 5
+      
+      EnvironmentSatisfaction:
+        "Low": 1
+        "Medium": 2
+        "High": 3
+        "Very High": 4
+  
+  # Feature engineering rules
+  engineering:
+    create_ratios:
+      - ["MonthlyIncome", "Age"]  # Income to age ratio
+      - ["YearsAtCompany", "Age"]  # Tenure to age ratio
+      - ["YearsInCurrentRole", "YearsAtCompany"]  # Role tenure ratio
+    
+    create_bins:
+      Age:
+        bins: [0, 25, 35, 45, 55, 100]
+        labels: ["Young", "Early Career", "Mid Career", "Senior", "Veteran"]
+      
+      MonthlyIncome:
+        bins: [0, 5000, 8000, 12000, 50000]
+        labels: ["Low", "Medium", "High", "Very High"]
+    
+    create_interactions:
+      - ["Department", "JobRole"]
+      - ["OverTime", "WorkLifeBalance"]
+      - ["JobSatisfaction", "EnvironmentSatisfaction"]
+
+# ================================================================
+# API CONFIGURATION
+# ================================================================
+
+api:
+  enabled: ${ENABLE_API:-false}
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  timeout: 300
+  
+  # API versioning
+  version: "v1"
+  prefix: "/api/v1"
+  
+  # Rate limiting
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+    burst_size: 10
+  
+  # Authentication
+  authentication:
+    enabled: ${ENABLE_USER_AUTH:-false}
+    method: "jwt"  # jwt, api_key, oauth2
+    secret_key: ${JWT_SECRET:-jwt-secret-key}
+    algorithm: "HS256"
+    expire_minutes: 30
+  
+  # CORS settings
+  cors:
+    enabled: ${ENABLE_CORS:-false}
+    allow_origins: ["*"]
+    allow_methods: ["GET", "POST", "PUT", "DELETE"]
+    allow_headers: ["*"]
+  
+  # API endpoints
+  endpoints:
+    prediction: "/predict"
+    batch_prediction: "/predict/batch"
+    model_info: "/model/info"
+    health: "/health"
+    metrics: "/metrics"
+
+# ================================================================
+# DATABASE CONFIGURATION
+# ================================================================
+
+database:
+  # Primary database
+  primary:
+    type: "postgresql"  # postgresql, sqlite, mysql
+    host: ${DB_HOST:-localhost}
+    port: ${DB_PORT:-5432}
+    name: ${DB_NAME:-hr_predictor}
+    username: ${DB_USER:-hr_user}
+    password: ${DB_PASSWORD:-secure_password_123}
+    
+    # Connection pool settings
+    pool_size: ${DB_POOL_SIZE:-10}
+    max_overflow: 20
+    pool_timeout: 30
+    pool_recycle: 3600
+    
+    # SQLAlchemy settings
+    echo: false
+    echo_pool: false
+    pool_pre_ping: true
+  
+  # Cache database (Redis)
+  cache:
+    type: "redis"
+    host: ${REDIS_HOST:-localhost}
+    port: ${REDIS_PORT:-6379}
+    db: ${REDIS_DB:-0}
+    password: ${REDIS_PASSWORD:-}
+    
+    # Connection settings
+    socket_timeout: 30
+    socket_connect_timeout: 30
+    socket_keepalive: true
+    socket_keepalive_options: {}
+    
+    # Cache settings
+    default_timeout: 3600
+    key_prefix: "hr_predictor:"
+  
+  # Database migrations
+  migrations:
+    enabled: true
+    auto_upgrade: false
+    backup_before_migration: true
+
+# ================================================================
+# EMAIL CONFIGURATION
+# ================================================================
+
+email:
+  enabled: ${ENABLE_EMAIL_NOTIFICATIONS:-false}
+  
+  # SMTP settings
+  smtp:
+    host: ${SMTP_HOST:-smtp.gmail.com}
+    port: ${SMTP_PORT:-587}
+    username: ${SMTP_USERNAME:-}
+    password: ${SMTP_PASSWORD:-}
+    use_tls: ${SMTP_USE_TLS:-true}
+    use_ssl: false
+    timeout: 30
+  
+  # Default sender
+  from_email: ${EMAIL_FROM:-hr-system@company.com}
+  from_name: "HR Attrition Predictor System"
+  
+  # Email templates
+  templates:
+    path: "config/email_templates.yaml"
+    default_language: "en"
+    
+  # Notification settings
+  notifications:
+    # High-risk employee alerts
+    high_risk_alerts:
+      enabled: true
+      threshold: 0.7
+      recipients:
+        - "hr-manager@company.com"
+        - "team-lead@company.com"
+      template: "manager_alert_high_risk"
+    
+    # System alerts
+    system_alerts:
+      enabled: true
+      recipients:
+        - "admin@company.com"
+      events:
+        - "model_drift_detected"
+        - "performance_degradation"
+        - "system_error"
+    
+    # Weekly reports
+    weekly_reports:
+      enabled: false
+      schedule: "monday_9am"
+      recipients:
+        - "hr-director@company.com"
+      template: "weekly_summary"
+  
+  # Rate limiting
+  rate_limiting:
+    max_emails_per_hour: 100
+    max_emails_per_day: 500
+    cooldown_period: 300  # seconds
+
+# ================================================================
+# STREAMLIT CONFIGURATION
+# ================================================================
+
+streamlit:
+  # Server settings
+  server:
+    port: ${STREAMLIT_SERVER_PORT:-8501}
+    address: ${STREAMLIT_SERVER_ADDRESS:-0.0.0.0}
+    headless: ${STREAMLIT_SERVER_HEADLESS:-true}
+    enableCORS: ${STREAMLIT_SERVER_ENABLE_CORS:-false}
+    enableXsrfProtection: false
+    maxUploadSize: 200  # MB
+    
+  # Theme configuration
+  theme:
+    primaryColor: "#00D4FF"
+    backgroundColor: "#0A0E27"
+    secondaryBackgroundColor: "#1A1F3A"
+    textColor: "#F0F8FF"
+    font: "sans serif"
+  
+  # Browser settings
+  browser:
+    gatherUsageStats: false
+    serverAddress: "localhost"
+    serverPort: 8501
+  
+  # Client settings
+  client:
+    showErrorDetails: ${DEBUG:-false}
+    toolbarMode: "viewer"
+  
+  # Page configuration
+  pages:
+    title: "HR Attrition Predictor"
+    icon: "🎯"
+    layout: "wide"
+    initial_sidebar_state: "expanded"
+    
+  # Caching
+  caching:
+    enabled: true
+    ttl: 3600  # seconds
+    max_entries: 1000
+
+# ================================================================
+# LOGGING CONFIGURATION
+# ================================================================
+
+logging:
+  # Log level
+  level: ${LOG_LEVEL:-INFO}  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  
+  # Log format
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  
+  # Log files
+  files:
+    # Application logs
+    app:
+      path: "logs/app.log"
+      max_size: "100MB"
+      backup_count: 5
+      level: "INFO"
+    
+    # Error logs
+    error:
+      path: "logs/error.log"
+      max_size: "50MB"
+      backup_count: 3
+      level: "ERROR"
+    
+    # Access logs
+    access:
+      path: "logs/access.log"
+      max_size: "100MB"
+      backup_count: 7
+      level: "INFO"
+    
+    # Model logs
+    model:
+      path: "logs/model.log"
+      max_size: "50MB"
+      backup_count: 3
+      level: "INFO"
+    
+    # Email logs
+    email:
+      path: "logs/email.log"
+      max_size: "25MB"
+      backup_count: 2
+      level: "INFO"
+  
+  # External logging services
+  external:
+    # Elasticsearch/Logstash
+    elasticsearch:
+      enabled: false
+      host: "localhost"
+      port: 9200
+      index: "hr-predictor"
+    
+    # Sentry error tracking
+    sentry:
+      enabled: false
+      dsn: ${SENTRY_DSN:-}
+      environment: ${APP_ENV:-production}
+
+# ================================================================
+# MONITORING CONFIGURATION
+# ================================================================
+
+monitoring:
+  # Metrics collection
+  metrics:
+    enabled: ${ENABLE_PERFORMANCE_TRACKING:-true}
+    
+    # Prometheus metrics
+    prometheus:
+      enabled: true
+      host: "0.0.0.0"
+      port: 8080
+      path: "/metrics"
+    
+    # Application metrics
+    application:
+      - "prediction_requests_total"
+      - "prediction_duration_seconds"
+      - "model_accuracy"
+      - "data_quality_score"
+      - "active_users"
+      - "email_notifications_sent"
+    
+    # System metrics
+    system:
+      - "cpu_usage_percent"
+      - "memory_usage_percent"
+      - "disk_usage_percent"
+      - "network_io_bytes"
+  
+  # Health checks
+  health_checks:
+    enabled: true
+    endpoint: "/health"
+    
+    # Check intervals
+    intervals:
+      database: 30  # seconds
+      redis: 30
+      model: 60
+      email: 300
+    
+    # Timeout settings
+    timeouts:
+      database: 5
+      redis: 2
+      model: 10
+      email: 10
+  
+  # Alerting
+  alerting:
+    enabled: false
+    
+    # Alert channels
+    channels:
+      email:
+        enabled: true
+        recipients: ["admin@company.com"]
+      
+      webhook:
+        enabled: false
+        url: "https://hooks.slack.com/webhook"
+    
+    # Alert rules
+    rules:
+      high_error_rate:
+        threshold: 0.05
+        duration: 300  # seconds
+      
+      low_model_performance:
+        threshold: 0.8
+        duration: 600
+      
+      high_resource_usage:
+        cpu_threshold: 80  # percent
+        memory_threshold: 85  # percent
+        duration: 600
+
+# ================================================================
+# SECURITY CONFIGURATION
+# ================================================================
+
+security:
+  # Encryption
+  encryption:
+    enabled: true
+    algorithm: "AES-256-GCM"
+    key: ${ENCRYPTION_KEY:-encryption-key-32-chars-long}
+  
+  # Authentication
+  authentication:
+    enabled: ${ENABLE_USER_AUTH:-false}
+    session_timeout: 3600  # seconds
+    max_login_attempts: 5
+    lockout_duration: 900  # seconds
+    
+    # Password policy
+    password_policy:
+      min_length: 8
+      require_uppercase: true
+      require_lowercase: true
+      require_numbers: true
+      require_special: true
+  
+  # Data privacy
+  privacy:
+    # PII handling
+    pii_fields:
+      - "EmployeeID"
+      - "Email"
+      - "PhoneNumber"
+    
+    # Data retention
+    retention_policy:
+      raw_data: 365  # days
+      processed_data: 180
+      logs: 90
+      backups: 30
+  
+  # Access control
+  access_control:
+    # Role-based access
+    rbac:
+      enabled: false
+      roles:
+        admin:
+          permissions: ["*"]
+        hr_manager:
+          permissions: ["read", "predict", "export"]
+        analyst:
+          permissions: ["read", "predict"]
+        viewer:
+          permissions: ["read"]
+  
+  # Audit logging
+  audit:
+    enabled: true
+    events:
+      - "user_login"
+      - "user_logout"
+      - "prediction_request"
+      - "data_export"
+      - "model_retrain"
+      - "config_change"
+
+# ================================================================
+# BACKUP CONFIGURATION
+# ================================================================
+
+backup:
+  # Backup schedule
+  schedule:
+    database: "0 2 * * *"  # Daily at 2 AM
+    models: "0 3 * * 0"    # Weekly on Sunday at 3 AM
+    data: "0 4 * * 0"      # Weekly on Sunday at 4 AM
+    configs: "0 5 * * 0"   # Weekly on Sunday at 5 AM
+  
+  # Retention policy
+  retention:
+    daily_backups: 7   # Keep 7 daily backups
+    weekly_backups: 4  # Keep 4 weekly backups
+    monthly_backups: 12 # Keep 12 monthly backups
+  
+  # Storage locations
+  storage:
+    local:
+      enabled: true
+      path: "backups/"
+    
+    cloud:
+      enabled: false
+      provider: "aws_s3"  # aws_s3, azure_blob, gcp_storage
+      bucket: "hr-predictor-backups"
+      region: "us-east-1"
+  
+  # Backup verification
+  verification:
+    enabled: true
+    test_restore: false
+    checksum_validation: true
+
+# ================================================================
+# ENVIRONMENT SPECIFIC OVERRIDES
+# ================================================================
+
+# Development settings
+development:
+  app:
+    debug: true
+  
+  logging:
+    level: "DEBUG"
+  
+  database:
+    primary:
+      echo: true
+  
+  email:
+    enabled: false
+
+# Staging settings  
+staging:
+  app:
+    debug: false
+  
+  logging:
+    level: "INFO"
+  
+  email:
+    enabled: true
+
+# Production settings
+production:
+  app:
+    debug: false
+  
+  logging:
+    level: "WARNING"
+  
+  models:
+    optimization:
+      enabled: true
+  
+  monitoring:
+    alerting:
+      enabled: true
+  
+  security:
+    authentication:
+      enabled: true
+  
+  backup:
+    storage:
+      cloud:
+        enabled: true
+
+# ================================================================
+# CUSTOM CONFIGURATIONS
+# ================================================================
+
+custom:
+  # Company specific settings
+  company:
+    name: "Your Company Name"
+    timezone: "Asia/Kolkata"
+    fiscal_year_start: "04-01"  # April 1st
+    working_hours: "09:00-18:00"
+    business_days: ["monday", "tuesday", "wednesday", "thursday", "friday"]
+  
+  # Regional settings
+  regional:
+    currency: "INR"
+    date_format: "DD/MM/YYYY"
+    number_format: "en-IN"
+    language: "en"
+  
+  # Industry specific settings
+  industry:
+    sector: "technology"
+    compliance_requirements:
+      - "GDPR"
+      - "SOC2"
+      - "ISO27001"
+  
+  # Integration settings
+  integrations:
+    hr_systems:
+      - name: "workday"
+        enabled: false
+        api_endpoint: ""
+        api_key: ""
+      
+      - name: "bamboohr"
+        enabled: false
+        api_endpoint: ""
+        api_key: ""
+    
+    communication:
+      slack:
+        enabled: false
+        webhook_url: ""
+        channels: ["#hr-alerts", "#data-science"]
+      
+      teams:
+        enabled: false
+        webhook_url: ""
+
+# ================================================================
+# VALIDATION RULES
+# ================================================================
+
+validation:
+  # Configuration validation
+  config:
+    required_sections:
+      - "app"
+      - "data"
+      - "models"
+      - "logging"
+    
+    required_fields:
+      app: ["name", "version", "environment"]
+      data: ["paths", "files"]
+      models: ["paths", "random_seed"]
+  
+  # Runtime validation
+  runtime:
+    check_data_paths: true
+    check_model_files: true
+    check_database_connection: true
+    check_email_config: true
+    validate_permissions: true
+
+# ================================================================
+# METADATA
+# ================================================================
+
+metadata:
+  config_version: "2.0"
+  last_updated: "2025-09-13T23:59:59Z"
+  created_by: "HR Analytics Team"
+  schema_version: "1.0"
+  
+  # Change log
+  changelog:
+    - version: "2.0"
+      date: "2025-09-13"
+      changes:
+        - "Added comprehensive monitoring configuration"
+        - "Enhanced security settings"
+        - "Added backup and recovery options"
+        - "Improved email notification system"
+    
+    - version: "1.0"
+      date: "2025-09-01"
+      changes:
+        - "Initial configuration structure"
+        - "Basic model and data settings"
+        - "Streamlit integration"
+
+# ================================================================
+# END OF CONFIGURATION
+# ================================================================
+# Note: Use environment variables to override sensitive information
+# and settings for different deployment environments.

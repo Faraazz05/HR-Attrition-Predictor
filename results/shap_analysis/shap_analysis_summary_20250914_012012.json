@@ -1,0 +1,100 @@
+{
+  "feature_importance": {
+    "top_15_features": [
+      {
+        "Feature": "Income_Z_Score",
+        "Mean_SHAP_Value": 0.01351325187494232
+      },
+      {
+        "Feature": "Promotion_Frequency",
+        "Mean_SHAP_Value": 0.01298505655660509
+      },
+      {
+        "Feature": "TotalWorkingYears",
+        "Mean_SHAP_Value": 0.011352139689427332
+      },
+      {
+        "Feature": "DistanceFromHome",
+        "Mean_SHAP_Value": 0.010845962149432207
+      },
+      {
+        "Feature": "EnvironmentSatisfaction",
+        "Mean_SHAP_Value": 0.01057156178742005
+      },
+      {
+        "Feature": "Performance_Satisfaction",
+        "Mean_SHAP_Value": 0.009550883816492144
+      },
+      {
+        "Feature": "Age_Income_Segment",
+        "Mean_SHAP_Value": 0.00889142394627123
+      },
+      {
+        "Feature": "Role_Tenure_Ratio",
+        "Mean_SHAP_Value": 0.008835170244131932
+      },
+      {
+        "Feature": "Tenure_to_Age_Ratio",
+        "Mean_SHAP_Value": 0.008566434192572385
+      },
+      {
+        "Feature": "Income_to_Age_Ratio",
+        "Mean_SHAP_Value": 0.008375893798365194
+      },
+      {
+        "Feature": "Experience_to_Age_Ratio",
+        "Mean_SHAP_Value": 0.00831656040130557
+      },
+      {
+        "Feature": "Distance_WorkLife_Impact",
+        "Mean_SHAP_Value": 0.008247158665969735
+      },
+      {
+        "Feature": "MonthlyIncome",
+        "Mean_SHAP_Value": 0.007683901593687132
+      },
+      {
+        "Feature": "PerformanceRating",
+        "Mean_SHAP_Value": 0.007113585618860421
+      },
+      {
+        "Feature": "Performance_Category",
+        "Mean_SHAP_Value": 0.007057155281249854
+      }
+    ],
+    "importance_statistics": {
+      "mean_importance": 0.00583323424260417,
+      "std_importance": 0.0033557046056138158,
+      "max_importance": 0.01351325187494232,
+      "min_importance": 0.00015827831932583702
+    }
+  },
+  "prediction_analysis": {
+    "probability_distribution": {
+      "mean": 0.17201813985406175,
+      "std": 0.08264493979094056,
+      "high_risk_count": 0,
+      "medium_risk_count": 7,
+      "low_risk_count": 93
+    }
+  },
+  "shap_statistics": {
+    "total_samples_analyzed": 100,
+    "total_features_analyzed": 41,
+    "mean_absolute_shap": 0.005833234242604171,
+    "shap_value_range": {
+      "min": -0.06812959988344156,
+      "max": 0.06812959988344158
+    }
+  },
+  "model_performance": {
+    "explainer_type": "TreeExplainer",
+    "model_type": "RandomForestClassifier",
+    "accuracy": 0.8333333333333334
+  },
+  "analysis_metadata": {
+    "timestamp": "2025-09-14T01:20:12.128224",
+    "notebook_version": "2.0",
+    "memory_limited": true
+  }
+}

@@ -1,0 +1,662 @@
+# HR Attrition Predictor - Docker Compose Configuration
+# ===================================================
+# Production-ready containerized deployment with full stack
+# Author: HR Analytics Team
+# Date: September 2025
+# Version: 2.0
+
+version: '3.8'
+
+services:
+  # ================================================================
+  # MAIN APPLICATION - HR ATTRITION PREDICTOR
+  # ================================================================
+  
+  hr-predictor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_DATE: ${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+        VCS_REF: ${VCS_REF:-latest}
+        VERSION: ${VERSION:-2.0}
+    
+    container_name: hr-attrition-predictor
+    hostname: hr-predictor-app
+    
+    ports:
+      - "${APP_PORT:-8501}:8501"
+    
+    environment:
+      # Python Configuration
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      
+      # Streamlit Configuration
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+      - STREAMLIT_SERVER_FILE_WATCHER_TYPE=none
+      - STREAMLIT_SERVER_ENABLE_CORS=${ENABLE_CORS:-false}
+      
+      # Application Configuration
+      - APP_ENV=${APP_ENV:-production}
+      - DEBUG=${DEBUG:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      
+      # Database Configuration
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=${POSTGRES_DB:-hr_predictor}
+      - DB_USER=${POSTGRES_USER:-hr_user}
+      - DB_PASSWORD=${POSTGRES_PASSWORD:-secure_password_123}
+      - DB_POOL_SIZE=${DB_POOL_SIZE:-10}
+      
+      # Redis Configuration
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      - REDIS_DB=${REDIS_DB:-0}
+      
+      # Security Configuration
+      - SECRET_KEY=${SECRET_KEY:-your-super-secret-key-change-in-production}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - JWT_SECRET=${JWT_SECRET:-jwt-secret-key}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:-encryption-key-32-chars-long}
+      
+      # Email Configuration
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USERNAME=${SMTP_USERNAME:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - SMTP_USE_TLS=${SMTP_USE_TLS:-true}
+      - EMAIL_FROM=${EMAIL_FROM:-hr-system@company.com}
+      
+      # ML Model Configuration
+      - MODEL_CACHE_SIZE=${MODEL_CACHE_SIZE:-100}
+      - PREDICTION_BATCH_SIZE=${PREDICTION_BATCH_SIZE:-1000}
+      - AUTO_RETRAIN=${AUTO_RETRAIN:-false}
+      - DRIFT_THRESHOLD=${DRIFT_THRESHOLD:-0.1}
+      
+      # Feature Flags
+      - ENABLE_SYNTHETIC_DATA=${ENABLE_SYNTHETIC_DATA:-true}
+      - ENABLE_EMAIL_NOTIFICATIONS=${ENABLE_EMAIL_NOTIFICATIONS:-false}
+      - ENABLE_MODEL_MONITORING=${ENABLE_MODEL_MONITORING:-true}
+      - ENABLE_PERFORMANCE_TRACKING=${ENABLE_PERFORMANCE_TRACKING:-true}
+      
+      # System Configuration
+      - TZ=${TIMEZONE:-Asia/Kolkata}
+      - MAX_WORKERS=${MAX_WORKERS:-4}
+      - WORKER_TIMEOUT=${WORKER_TIMEOUT:-300}
+      
+    volumes:
+      # Configuration files (read-only)
+      - ./config:/app/config:ro
+      - ./streamlit_app/assets:/app/streamlit_app/assets:ro
+      
+      # Data persistence
+      - hr_data:/app/data
+      - hr_models:/app/models
+      - hr_logs:/app/logs
+      - hr_results:/app/results
+      - hr_reports:/app/reports
+      - hr_cache:/app/cache
+      
+      # Streamlit secrets (mount your real secrets file)
+      - ./secrets/secrets.toml:/home/appuser/.streamlit/secrets.toml:ro
+      
+      # Optional: Development volume mount (comment out for production)
+      # - ./src:/app/src:ro
+    
+    networks:
+      - hr-network
+      - monitoring-network
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 60s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPU_LIMIT:-2.0}'
+          memory: ${MEMORY_LIMIT:-4G}
+        reservations:
+          cpus: '${CPU_RESERVATION:-1.0}'
+          memory: ${MEMORY_RESERVATION:-2G}
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 60s
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+        labels: "service=hr-predictor"
+
+  # ================================================================
+  # POSTGRESQL DATABASE
+  # ================================================================
+  
+  postgres:
+    image: postgres:15-alpine
+    container_name: hr-predictor-postgres
+    hostname: hr-postgres-db
+    
+    environment:
+      # Database Configuration
+      - POSTGRES_DB=${POSTGRES_DB:-hr_predictor}
+      - POSTGRES_USER=${POSTGRES_USER:-hr_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secure_password_123}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      
+      # Performance Tuning
+      - POSTGRES_SHARED_BUFFERS=${PG_SHARED_BUFFERS:-256MB}
+      - POSTGRES_EFFECTIVE_CACHE_SIZE=${PG_EFFECTIVE_CACHE_SIZE:-1GB}
+      - POSTGRES_WORK_MEM=${PG_WORK_MEM:-4MB}
+      - POSTGRES_MAINTENANCE_WORK_MEM=${PG_MAINTENANCE_WORK_MEM:-64MB}
+    
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    
+    volumes:
+      # Data persistence
+      - postgres_data:/var/lib/postgresql/data
+      
+      # Initialization scripts
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/02-schema.sql:ro
+      - ./sql/seed_data.sql:/docker-entrypoint-initdb.d/03-seed.sql:ro
+      
+      # Configuration
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      
+      # Backups
+      - postgres_backups:/backups
+    
+    networks:
+      - hr-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hr_user} -d ${POSTGRES_DB:-hr_predictor} -h localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '${PG_CPU_LIMIT:-1.0}'
+          memory: ${PG_MEMORY_LIMIT:-1G}
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+        labels: "service=postgres"
+
+  # ================================================================
+  # REDIS CACHE
+  # ================================================================
+  
+  redis:
+    image: redis:7-alpine
+    container_name: hr-predictor-redis
+    hostname: hr-redis-cache
+    
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    
+    volumes:
+      # Data persistence
+      - redis_data:/data
+      
+      # Configuration
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    
+    networks:
+      - hr-network
+    
+    restart: unless-stopped
+    
+    command: >
+      redis-server 
+      --appendonly yes 
+      --maxmemory ${REDIS_MAX_MEMORY:-512mb}
+      --maxmemory-policy allkeys-lru
+      --tcp-keepalive 60
+      --timeout 300
+      --save 900 1
+      --save 300 10
+      --save 60 10000
+      ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD}
+    
+    healthcheck:
+      test: ["CMD", "redis-cli", "--no-auth-warning", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: ${REDIS_MEMORY_LIMIT:-1G}
+        reservations:
+          cpus: '0.2'
+          memory: 256M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "25m"
+        max-file: "2"
+        labels: "service=redis"
+
+  # ================================================================
+  # NGINX REVERSE PROXY & LOAD BALANCER
+  # ================================================================
+  
+  nginx:
+    image: nginx:alpine
+    container_name: hr-predictor-nginx
+    hostname: hr-nginx-proxy
+    
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+    
+    environment:
+      - NGINX_WORKER_PROCESSES=${NGINX_WORKERS:-auto}
+      - NGINX_WORKER_CONNECTIONS=${NGINX_CONNECTIONS:-1024}
+    
+    volumes:
+      # Configuration
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      
+      # Static assets
+      - ./nginx/static:/usr/share/nginx/html:ro
+      - ./streamlit_app/assets/static:/usr/share/nginx/html/assets:ro
+      
+      # Logs
+      - nginx_logs:/var/log/nginx
+      
+      # Let's Encrypt certificates (if using)
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    
+    networks:
+      - hr-network
+      - public-network
+    
+    depends_on:
+      - hr-predictor
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+        labels: "service=nginx"
+
+  # ================================================================
+  # MONITORING - PROMETHEUS
+  # ================================================================
+  
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: hr-predictor-prometheus
+    hostname: hr-prometheus
+    
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/rules:/etc/prometheus/rules:ro
+      - prometheus_data:/prometheus
+    
+    networks:
+      - monitoring-network
+      - hr-network
+    
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=${PROMETHEUS_RETENTION:-30d}'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+      - '--web.external-url=http://localhost:9090'
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  # ================================================================
+  # MONITORING - GRAFANA
+  # ================================================================
+  
+  grafana:
+    image: grafana/grafana:latest
+    container_name: hr-predictor-grafana
+    hostname: hr-grafana
+    
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+      - GF_SERVER_ROOT_URL=${GRAFANA_URL:-http://localhost:3000}
+    
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    
+    networks:
+      - monitoring-network
+      - hr-network
+    
+    depends_on:
+      - prometheus
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  # ================================================================
+  # BACKUP SERVICE
+  # ================================================================
+  
+  backup:
+    image: alpine:latest
+    container_name: hr-predictor-backup
+    
+    environment:
+      - BACKUP_SCHEDULE=${BACKUP_SCHEDULE:-0 2 * * *}
+      - RETENTION_DAYS=${BACKUP_RETENTION_DAYS:-7}
+      - POSTGRES_DB=${POSTGRES_DB:-hr_predictor}
+      - POSTGRES_USER=${POSTGRES_USER:-hr_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secure_password_123}
+    
+    volumes:
+      - postgres_backups:/backups
+      - hr_data:/app/data:ro
+      - hr_models:/app/models:ro
+      - ./scripts/backup.sh:/backup.sh:ro
+    
+    networks:
+      - hr-network
+    
+    depends_on:
+      - postgres
+    
+    restart: unless-stopped
+    
+    command: >
+      sh -c "
+        apk add --no-cache postgresql-client dcron &&
+        echo '${BACKUP_SCHEDULE:-0 2 * * *} /backup.sh' | crontab - &&
+        crond -f -l 2
+      "
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "25m"
+        max-file: "2"
+        labels: "service=backup"
+
+  # ================================================================
+  # LOG AGGREGATION - ELK STACK (OPTIONAL)
+  # ================================================================
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
+    container_name: hr-predictor-elasticsearch
+    
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    
+    ports:
+      - "${ELASTICSEARCH_PORT:-9200}:9200"
+    
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    
+    networks:
+      - monitoring-network
+    
+    restart: unless-stopped
+    
+    profiles: ["logging", "full"]
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.10.0
+    container_name: hr-predictor-kibana
+    
+    ports:
+      - "${KIBANA_PORT:-5601}:5601"
+    
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    
+    networks:
+      - monitoring-network
+    
+    depends_on:
+      - elasticsearch
+    
+    restart: unless-stopped
+    
+    profiles: ["logging", "full"]
+
+# ================================================================
+# NETWORKS
+# ================================================================
+
+networks:
+  hr-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+    labels:
+      - "com.hr-predictor.network.description=Internal HR Predictor network"
+  
+  monitoring-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/16
+          gateway: 172.21.0.1
+    labels:
+      - "com.hr-predictor.network.description=Monitoring and observability network"
+  
+  public-network:
+    driver: bridge
+    labels:
+      - "com.hr-predictor.network.description=Public facing network"
+
+# ================================================================
+# VOLUMES
+# ================================================================
+
+volumes:
+  # Application data
+  hr_data:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=HR application data"
+  
+  hr_models:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=ML models and artifacts"
+  
+  hr_logs:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Application logs"
+  
+  hr_results:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Analysis results and reports"
+  
+  hr_reports:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Generated reports"
+  
+  hr_cache:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Application cache"
+  
+  # Database
+  postgres_data:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=PostgreSQL data"
+  
+  postgres_backups:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Database backups"
+  
+  # Cache
+  redis_data:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Redis cache data"
+  
+  # Web server
+  nginx_logs:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Nginx access and error logs"
+  
+  # Monitoring
+  prometheus_data:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Prometheus metrics data"
+  
+  grafana_data:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Grafana dashboards and settings"
+  
+  # Logging (optional)
+  elasticsearch_data:
+    driver: local
+    labels:
+      - "com.hr-predictor.volume.description=Elasticsearch indices"
+
+# ================================================================
+# CONFIGURATION METADATA
+# ================================================================
+
+# Docker Compose metadata
+x-common-variables: &common-variables
+  TZ: ${TIMEZONE:-Asia/Kolkata}
+  APP_ENV: ${APP_ENV:-production}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50m"
+    max-file: "3"
+
+x-deploy-limits: &default-limits
+  resources:
+    limits:
+      cpus: '1.0'
+      memory: 1G
+    reservations:
+      cpus: '0.5'
+      memory: 512M

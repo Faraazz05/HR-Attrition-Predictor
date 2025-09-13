@@ -293,3 +293,529 @@ TypeError: 'function' object is not iterable
                                                     ^^^^^^^^^^^^^
 TypeError: 'function' object is not iterable
 
+2025-09-14 02:26:21,304 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:26:21,307 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:26:28,569 - INFO - System health check completed: healthy
+2025-09-14 02:26:28,915 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:26:28,972 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:26:29,003 - INFO - Application fully initialized successfully
+2025-09-14 02:26:44,630 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:26:44,631 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:26:45,212 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:26:45,216 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:26:47,479 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:26:47,479 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:26:47,782 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:26:47,789 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:26:49,495 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:26:49,496 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:26:49,947 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:26:49,953 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:26:51,113 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:26:51,114 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:26:51,704 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:26:51,711 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:26:52,178 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:26:52,179 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:26:52,509 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:26:52,512 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:26:52,989 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:26:52,992 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:26:53,363 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:26:53,371 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:31:43,747 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:31:43,751 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:31:49,889 - INFO - System health check completed: healthy
+2025-09-14 02:31:50,352 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:31:50,358 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:31:50,416 - INFO - Application fully initialized successfully
+2025-09-14 02:31:56,936 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:31:56,937 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:31:57,360 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:31:57,367 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:31:58,299 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:31:58,301 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:31:58,653 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:31:58,658 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:31:59,186 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:31:59,187 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:31:59,829 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:31:59,936 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:31:59,937 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:31:59,943 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:32:00,420 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:32:00,491 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:32:01,365 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:32:01,418 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:32:01,448 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:32:01,619 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:32:03,025 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:32:03,026 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:32:04,897 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:32:04,930 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:36:41,929 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:36:41,929 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:36:47,914 - INFO - System health check completed: healthy
+2025-09-14 02:36:48,357 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:36:48,363 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:36:48,427 - INFO - Application fully initialized successfully
+2025-09-14 02:37:11,288 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:11,289 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:12,901 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:12,932 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:17,624 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:17,625 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:18,009 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:18,018 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:20,623 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:20,624 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:20,973 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:20,988 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:24,271 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:24,272 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:24,656 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:24,667 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:26,198 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:26,204 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:26,647 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:26,651 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:28,495 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:28,495 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:28,787 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:28,798 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:29,910 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:29,912 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:30,685 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:30,688 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:31,498 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:31,500 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:31,865 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:31,868 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:33,050 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:33,050 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:33,402 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:33,405 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:44,196 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:44,197 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:44,548 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:44,552 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:46,403 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:46,409 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:46,754 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:46,765 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:48,658 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:48,661 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:49,032 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:49,035 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:51,643 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:51,645 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:52,718 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:52,733 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:37:59,152 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:37:59,153 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:37:59,544 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:37:59,547 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:38:04,502 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:38:04,505 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:38:04,886 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:38:04,891 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:38:08,930 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:38:08,931 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:38:09,377 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:38:09,380 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:38:13,839 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:38:13,858 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:38:14,211 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:38:14,214 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:38:18,320 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:38:18,321 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:38:19,145 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:38:19,159 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:38:36,908 - INFO - Python version: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+2025-09-14 02:38:36,909 - INFO - Working directory: C:\Users\Faraz\Documents\hr_attrition_predictor
+2025-09-14 02:38:37,223 - ERROR - Application error in Navigation: TypeError - 'function' object is not iterable
+2025-09-14 02:38:37,234 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 392, in main
+    pg = st.navigation(pages)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 304, in navigation
+    return _navigation(pages, position=position, expanded=expanded)
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\venv\Lib\site-packages\streamlit\commands\navigation.py", line 318, in _navigation
+    section: [convert_to_streamlit_page(p) for p in section_pages]
+                                                    ^^^^^^^^^^^^^
+TypeError: 'function' object is not iterable
+
+2025-09-14 02:38:37,379 - ERROR - Application error in Main Application: AttributeError - module 'streamlit' has no attribute 'experimental_rerun'
+2025-09-14 02:38:37,387 - ERROR - Traceback (most recent call last):
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 425, in main
+    render_application_footer()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Faraz\Documents\hr_attrition_predictor\streamlit_app\app.py", line 515, in render_application_footer
+    st.experimental_rerun()
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'streamlit' has no attribute 'experimental_rerun'. Did you mean: 'experimental_user'?
+
