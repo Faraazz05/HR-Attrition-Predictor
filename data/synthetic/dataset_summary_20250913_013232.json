@@ -1,0 +1,63 @@
+{
+  "basic_info": {
+    "total_records": 10000,
+    "total_features": 72,
+    "memory_usage_mb": 21.369860649108887,
+    "missing_values": "0"
+  },
+  "target_distribution": {
+    "attrition_rate": 0.5978,
+    "attrition_count": "5978",
+    "retention_count": "4022"
+  },
+  "demographic_distribution": {
+    "age_stats": {
+      "mean": 35.1594,
+      "min": "22",
+      "max": "65",
+      "std": 9.149150907938594
+    },
+    "gender_distribution": {
+      "Female": 5032,
+      "Male": 4777,
+      "Non-Binary": 191
+    },
+    "education_distribution": {
+      "Bachelor's Degree": 5193,
+      "Master's Degree": 2825,
+      "High School": 1350,
+      "PhD": 632
+    }
+  },
+  "professional_distribution": {
+    "department_counts": {
+      "Engineering": 2516,
+      "Sales": 1935,
+      "Operations": 1529,
+      "Marketing": 1196,
+      "Customer Success": 1002,
+      "Finance": 803,
+      "Human Resources": 490,
+      "Legal": 316,
+      "Executive": 213
+    },
+    "job_level_distribution": {
+      "4": 5041,
+      "3": 2514,
+      "5": 1342,
+      "1": 737,
+      "2": 366
+    },
+    "salary_stats": {
+      "mean_annual": 1560644.7564,
+      "median_annual": 1410300.0,
+      "min_annual": "459084",
+      "max_annual": "6367320"
+    }
+  },
+  "satisfaction_stats": {
+    "job_satisfaction_mean": 2.8284,
+    "work_life_balance_mean": 2.8326,
+    "overall_satisfaction_mean": 2.8691
+  }
+}

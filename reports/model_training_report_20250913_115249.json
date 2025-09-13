@@ -1,0 +1,131 @@
+{
+  "training_summary": {
+    "training_date": "2025-09-13T11:52:49.291615",
+    "training_duration": "Optimized for 4GB RAM",
+    "dataset_size": {
+      "total_samples": 10000,
+      "training_samples": 8000,
+      "testing_samples": 2000,
+      "features": 22
+    },
+    "memory_optimization": {
+      "initial_memory_mb": 92.41796875,
+      "peak_memory_mb": 33.78515625,
+      "optimization_techniques": [
+        "Selective column loading",
+        "Label encoding instead of one-hot",
+        "Reduced hyperparameter grids",
+        "Small CV folds (3 instead of 5)",
+        "Single-threaded processing",
+        "Immediate garbage collection"
+      ]
+    }
+  },
+  "model_performance": {
+    "Logistic Regression": {
+      "accuracy": 0.7695,
+      "roc_auc": 0.8489679528777518,
+      "model_type": "Logistic Regression"
+    },
+    "Random Forest": {
+      "accuracy": 0.8415,
+      "roc_auc": 0.9144318125093595,
+      "model_type": "Random Forest"
+    },
+    "Ensemble": {
+      "accuracy": 0.8375,
+      "roc_auc": 0.9123581507179819,
+      "model_type": "Ensemble"
+    },
+    "XGBoost": {
+      "accuracy": 0.8455,
+      "roc_auc": 0.924959233930681,
+      "model_type": "XGBoost"
+    }
+  },
+  "best_model": {
+    "name": "XGBoost",
+    "roc_auc": 0.924959233930681,
+    "accuracy": 0.8455,
+    "model_path": "../models/best_model.pkl"
+  },
+  "feature_engineering": {
+    "categorical_encoding": "Label Encoding (memory efficient)",
+    "numerical_scaling": "Standard Scaling",
+    "feature_count": 22,
+    "features_used": [
+      "Age",
+      "Gender",
+      "MaritalStatus",
+      "Education",
+      "DistanceFromHome",
+      "Department",
+      "JobRole",
+      "JobLevel",
+      "MonthlyIncome",
+      "TotalWorkingYears",
+      "YearsAtCompany",
+      "YearsInCurrentRole",
+      "NumCompaniesWorked",
+      "PerformanceScore",
+      "PercentSalaryHike",
+      "TrainingTimesLastYear",
+      "OverTime",
+      "BusinessTravel",
+      "JobSatisfaction",
+      "EnvironmentSatisfaction",
+      "WorkLifeBalance",
+      "RelationshipSatisfaction"
+    ]
+  },
+  "hyperparameter_optimization": {
+    "method": "GridSearchCV with reduced grids",
+    "cv_folds": 3,
+    "memory_optimization": "Single-threaded, reduced parameter space"
+  },
+  "feature_importance": {
+    "method": "Random Forest Feature Importance",
+    "top_features": [
+      {
+        "feature": "PerformanceScore",
+        "importance": 0.1935732643211426
+      },
+      {
+        "feature": "JobSatisfaction",
+        "importance": 0.13340205006204747
+      },
+      {
+        "feature": "OverTime",
+        "importance": 0.11984096947221387
+      },
+      {
+        "feature": "WorkLifeBalance",
+        "importance": 0.10490905940141657
+      },
+      {
+        "feature": "YearsAtCompany",
+        "importance": 0.06492583863461276
+      },
+      {
+        "feature": "DistanceFromHome",
+        "importance": 0.05913518084226176
+      },
+      {
+        "feature": "PercentSalaryHike",
+        "importance": 0.05374430383900901
+      },
+      {
+        "feature": "EnvironmentSatisfaction",
+        "importance": 0.04079896346229277
+      },
+      {
+        "feature": "Age",
+        "importance": 0.03566130511780826
+      },
+      {
+        "feature": "TotalWorkingYears",
+        "importance": 0.03250109293245948
+      }
+    ]
+  }
+}

@@ -1,0 +1,1377 @@
+# HR Attrition Predictor - Email Template Definitions
+# ==================================================
+# Comprehensive email templates for HR automation with professional styling,
+# responsive design, and cyberpunk theme integration.
+#
+# Author: HR Analytics Team
+# Date: September 2025
+# Version: 1.0
+
+# Template Categories:
+# - manager_alerts: Alerts for managers about high-risk employees
+# - engagement_surveys: Employee engagement and satisfaction surveys
+# - retention_campaigns: Targeted retention emails (general, benefits, career, wellness)
+# - notifications: System notifications and updates
+# - reports: Automated report delivery
+
+templates:
+  
+  # ================================================================
+  # MANAGER ALERT TEMPLATES
+  # ================================================================
+  
+  manager_alert_high_risk:
+    template_id: "manager_alert_high_risk"
+    category: "manager_alerts"
+    subject: "🚨 URGENT: High-Risk Employees in {{ department or 'Your Team' }} - Immediate Action Required"
+    priority: "critical"
+    variables:
+      - manager_name
+      - department
+      - high_risk_employees
+      - risk_count
+      - alert_date
+      - dashboard_url
+      - support_email
+    
+    html_template: |
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>High-Risk Employee Alert</title>
+          <style>
+              body {
+                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                  line-height: 1.6;
+                  color: #333;
+                  margin: 0;
+                  padding: 0;
+                  background: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 100%);
+              }
+              .email-container {
+                  max-width: 650px;
+                  margin: 20px auto;
+                  background: #ffffff;
+                  border-radius: 15px;
+                  overflow: hidden;
+                  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+              }
+              .header {
+                  background: linear-gradient(135deg, #FF2D75 0%, #FF6B35 100%);
+                  color: white;
+                  padding: 40px 30px;
+                  text-align: center;
+                  position: relative;
+              }
+              .header::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+                  opacity: 0.3;
+              }
+              .header-content {
+                  position: relative;
+                  z-index: 1;
+              }
+              .alert-icon {
+                  font-size: 48px;
+                  margin-bottom: 15px;
+                  animation: pulse 2s infinite;
+              }
+              @keyframes pulse {
+                  0% { transform: scale(1); }
+                  50% { transform: scale(1.1); }
+                  100% { transform: scale(1); }
+              }
+              .content {
+                  padding: 40px 30px;
+                  background: white;
+              }
+              .alert-box {
+                  background: linear-gradient(135deg, #FFF3CD 0%, #FFEAA7 100%);
+                  border: 2px solid #FF6B35;
+                  border-radius: 12px;
+                  padding: 25px;
+                  margin: 25px 0;
+                  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+              }
+              .employee-list {
+                  background: #f8f9fa;
+                  border-radius: 12px;
+                  overflow: hidden;
+                  margin: 25px 0;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              }
+              .employee-item {
+                  padding: 20px;
+                  border-bottom: 1px solid #e9ecef;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  transition: background 0.3s ease;
+              }
+              .employee-item:hover {
+                  background: #e9ecef;
+              }
+              .employee-item:last-child {
+                  border-bottom: none;
+              }
+              .employee-info h4 {
+                  margin: 0 0 8px 0;
+                  color: #2c3e50;
+                  font-size: 16px;
+              }
+              .employee-info p {
+                  margin: 0;
+                  color: #6c757d;
+                  font-size: 14px;
+              }
+              .risk-badge {
+                  padding: 8px 16px;
+                  border-radius: 25px;
+                  font-size: 12px;
+                  font-weight: bold;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+              }
+              .risk-high {
+                  background: linear-gradient(135deg, #FF2D75 0%, #FF6B35 100%);
+                  color: white;
+                  box-shadow: 0 3px 10px rgba(255, 45, 117, 0.3);
+              }
+              .risk-medium {
+                  background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
+                  color: white;
+                  box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
+              }
+              .actions-section {
+                  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+                  padding: 25px;
+                  border-radius: 12px;
+                  margin: 25px 0;
+              }
+              .actions-section h3 {
+                  color: #1976D2;
+                  margin-top: 0;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+              }
+              .action-list {
+                  list-style: none;
+                  padding: 0;
+                  margin: 15px 0;
+              }
+              .action-list li {
+                  padding: 12px 0;
+                  border-bottom: 1px solid rgba(25, 118, 210, 0.2);
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 12px;
+              }
+              .action-list li:last-child {
+                  border-bottom: none;
+              }
+              .action-icon {
+                  font-size: 18px;
+                  color: #1976D2;
+                  margin-top: 2px;
+              }
+              .cta-button {
+                  display: inline-block;
+                  background: linear-gradient(135deg, #00D4FF 0%, #B026FF 100%);
+                  color: white;
+                  padding: 15px 30px;
+                  text-decoration: none;
+                  border-radius: 30px;
+                  font-weight: bold;
+                  font-size: 16px;
+                  margin: 20px 10px 10px 0;
+                  box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+                  transition: all 0.3s ease;
+              }
+              .cta-button:hover {
+                  transform: translateY(-2px);
+                  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+              }
+              .footer {
+                  background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+                  color: white;
+                  padding: 30px;
+                  text-align: center;
+              }
+              .footer p {
+                  margin: 5px 0;
+              }
+              .confidential-notice {
+                  background: #E74C3C;
+                  color: white;
+                  padding: 15px;
+                  text-align: center;
+                  font-weight: bold;
+                  font-size: 14px;
+                  letter-spacing: 1px;
+              }
+              @media (max-width: 600px) {
+                  .email-container {
+                      margin: 10px;
+                      border-radius: 10px;
+                  }
+                  .header, .content {
+                      padding: 25px 20px;
+                  }
+                  .employee-item {
+                      flex-direction: column;
+                      align-items: flex-start;
+                      gap: 15px;
+                  }
+                  .cta-button {
+                      display: block;
+                      text-align: center;
+                      margin: 10px 0;
+                  }
+              }
+          </style>
+      </head>
+      <body>
+          <div class="email-container">
+              <div class="header">
+                  <div class="header-content">
+                      <div class="alert-icon">🚨</div>
+                      <h1 style="margin: 0 0 10px 0; font-size: 28px;">URGENT HR ALERT</h1>
+                      <p style="margin: 0; font-size: 16px; opacity: 0.9;">High-Risk Employees Require Immediate Attention</p>
+                      <p style="margin: 10px 0 0 0; font-size: 14px; opacity: 0.8;">{{ alert_date }}</p>
+                  </div>
+              </div>
+              
+              <div class="content">
+                  <h2 style="color: #2c3e50; margin-bottom: 20px;">Hello {{ manager_name }},</h2>
+                  
+                  <div class="alert-box">
+                      <h3 style="margin: 0 0 15px 0; color: #E67E22; display: flex; align-items: center; gap: 10px;">
+                          ⚠️ IMMEDIATE ACTION REQUIRED
+                      </h3>
+                      <p style="margin: 0; font-size: 16px; line-height: 1.6;">
+                          Our AI-powered attrition prediction system has identified <strong>{{ risk_count }} employee(s)</strong> 
+                          in {% if department %}{{ department }}{% else %}your team{% endif %} who are at 
+                          <span style="color: #E74C3C; font-weight: bold;">HIGH RISK</span> of leaving the organization.
+                      </p>
+                  </div>
+                  
+                  <h3 style="color: #2c3e50; margin: 30px 0 20px 0;">🎯 High-Risk Employees:</h3>
+                  <div class="employee-list">
+                      {% for employee in high_risk_employees %}
+                      <div class="employee-item">
+                          <div class="employee-info">
+                              <h4>{{ employee.name or employee.employee_id }}</h4>
+                              <p>{{ employee.role or 'Employee' }} • {{ employee.department or 'Department' }}</p>
+                              {% if employee.risk_probability %}
+                              <p style="color: #E74C3C; font-weight: bold; margin-top: 5px;">
+                                  Risk Probability: {{ (employee.risk_probability * 100)|round(1) }}%
+                              </p>
+                              {% endif %}
+                          </div>
+                          <div>
+                              <span class="risk-badge risk-{{ employee.risk_level|lower }}">
+                                  {{ employee.risk_level|upper }} RISK
+                              </span>
+                          </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+                  
+                  <div class="actions-section">
+                      <h3>🎯 Immediate Actions Required:</h3>
+                      <ul class="action-list">
+                          <li>
+                              <span class="action-icon">⏰</span>
+                              <div>
+                                  <strong>Schedule One-on-One Meetings</strong><br>
+                                  <span style="color: #666;">Arrange individual meetings within the next 48 hours to discuss concerns and career goals.</span>
+                              </div>
+                          </li>
+                          <li>
+                              <span class="action-icon">💰</span>
+                              <div>
+                                  <strong>Review Compensation & Benefits</strong><br>
+                                  <span style="color: #666;">Assess salary competitiveness and benefits alignment with market standards.</span>
+                              </div>
+                          </li>
+                          <li>
+                              <span class="action-icon">🚀</span>
+                              <div>
+                                  <strong>Discuss Career Development</strong><br>
+                                  <span style="color: #666;">Explore growth opportunities, skill development, and advancement paths.</span>
+                              </div>
+                          </li>
+                          <li>
+                              <span class="action-icon">⚖️</span>
+                              <div>
+                                  <strong>Assess Work-Life Balance</strong><br>
+                                  <span style="color: #666;">Review workload, overtime, and flexibility options to improve satisfaction.</span>
+                              </div>
+                          </li>
+                          <li>
+                              <span class="action-icon">📝</span>
+                              <div>
+                                  <strong>Document All Interactions</strong><br>
+                                  <span style="color: #666;">Record discussions, action plans, and follow-up commitments for tracking.</span>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+                  
+                  <div style="text-align: center; margin: 30px 0;">
+                      <a href="{{ dashboard_url }}" class="cta-button">📊 View Full Dashboard</a>
+                      <a href="mailto:{{ support_email }}" class="cta-button" style="background: linear-gradient(135deg, #28A745 0%, #20C997 100%); box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);">📞 Contact HR Support</a>
+                  </div>
+                  
+                  <div style="background: #F8F9FA; padding: 20px; border-radius: 10px; border-left: 4px solid #007BFF;">
+                      <h4 style="color: #007BFF; margin: 0 0 10px 0;">📈 Why This Matters</h4>
+                      <p style="margin: 0; color: #6C757D; line-height: 1.6;">
+                          Employee replacement costs average 150-200% of annual salary. Early intervention 
+                          with high-risk employees can save significant recruitment, training, and productivity costs 
+                          while maintaining team morale and continuity.
+                      </p>
+                  </div>
+                  
+                  <p style="margin-top: 30px; color: #6C757D;">
+                      <strong>Need immediate assistance?</strong> Contact HR at 
+                      <a href="mailto:{{ support_email }}" style="color: #007BFF;">{{ support_email }}</a> 
+                      or call our emergency HR hotline.
+                  </p>
+              </div>
+              
+              <div class="footer">
+                  <p style="font-size: 16px; margin-bottom: 15px;">HR Attrition Prediction System</p>
+                  <p style="font-size: 14px; opacity: 0.8;">Powered by AI • Protecting Your Team</p>
+                  <p style="font-size: 12px; margin-top: 15px; opacity: 0.7;">
+                      This alert was generated on {{ current_date }} using advanced machine learning algorithms.
+                  </p>
+              </div>
+              
+              <div class="confidential-notice">
+                  🔒 CONFIDENTIAL - FOR MANAGEMENT USE ONLY
+              </div>
+          </div>
+      </body>
+      </html>
+    
+    text_template: |
+      URGENT HR ALERT: High-Risk Employees - {{ alert_date }}
+      =====================================================
+      
+      Hello {{ manager_name }},
+      
+      🚨 IMMEDIATE ACTION REQUIRED
+      
+      Our AI-powered attrition prediction system has identified {{ risk_count }} employee(s) 
+      in {% if department %}{{ department }}{% else %}your team{% endif %} who are at HIGH RISK of leaving the organization.
+      
+      HIGH-RISK EMPLOYEES:
+      {% for employee in high_risk_employees %}
+      
+      • {{ employee.name or employee.employee_id }}
+        Role: {{ employee.role or 'Employee' }}
+        Department: {{ employee.department or 'N/A' }}
+        Risk Level: {{ employee.risk_level|upper }}
+        {% if employee.risk_probability %}Risk Probability: {{ (employee.risk_probability * 100)|round(1) }}%{% endif %}
+      
+      {% endfor %}
+      
+      IMMEDIATE ACTIONS REQUIRED:
+      
+      1. ⏰ Schedule One-on-One Meetings (Within 48 hours)
+         - Discuss individual concerns and career goals
+         - Listen actively and document feedback
+      
+      2. 💰 Review Compensation & Benefits
+         - Assess salary competitiveness
+         - Review benefits alignment with needs
+      
+      3. 🚀 Discuss Career Development
+         - Explore growth opportunities
+         - Create skill development plans
+      
+      4. ⚖️ Assess Work-Life Balance
+         - Review workload and overtime
+         - Consider flexibility options
+      
+      5. 📝 Document All Interactions
+         - Record discussions and action plans
+         - Set follow-up dates and commitments
+      
+      📊 VIEW FULL DASHBOARD: {{ dashboard_url }}
+      📞 HR SUPPORT: {{ support_email }}
+      
+      WHY THIS MATTERS:
+      Employee replacement costs average 150-200% of annual salary. Early intervention 
+      can save significant costs while maintaining team morale and continuity.
+      
+      ---
+      HR Attrition Prediction System
+      Generated: {{ current_date }}
+      🔒 CONFIDENTIAL - FOR MANAGEMENT USE ONLY
+
+  # ================================================================
+  # ENGAGEMENT SURVEY TEMPLATES
+  # ================================================================
+  
+  engagement_survey_comprehensive:
+    template_id: "engagement_survey_comprehensive"
+    category: "engagement_surveys"
+    subject: "📋 Your Voice Matters: {{ current_year }} Employee Engagement Survey"
+    priority: "normal"
+    variables:
+      - employee_name
+      - employee_role
+      - department
+      - survey_url
+      - survey_deadline
+      - hr_contact
+      - company_name
+    
+    html_template: |
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Employee Engagement Survey</title>
+          <style>
+              body {
+                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                  line-height: 1.6;
+                  color: #333;
+                  margin: 0;
+                  padding: 0;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              }
+              .email-container {
+                  max-width: 600px;
+                  margin: 20px auto;
+                  background: #ffffff;
+                  border-radius: 15px;
+                  overflow: hidden;
+                  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+              }
+              .header {
+                  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                  color: white;
+                  padding: 40px 30px;
+                  text-align: center;
+                  position: relative;
+              }
+              .header::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="70" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+                  opacity: 0.6;
+              }
+              .header-content {
+                  position: relative;
+                  z-index: 1;
+              }
+              .survey-icon {
+                  font-size: 48px;
+                  margin-bottom: 15px;
+                  animation: bounce 2s infinite;
+              }
+              @keyframes bounce {
+                  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                  40% { transform: translateY(-10px); }
+                  60% { transform: translateY(-5px); }
+              }
+              .content {
+                  padding: 40px 30px;
+              }
+              .highlight-box {
+                  background: linear-gradient(135deg, #E7F3FF 0%, #C3E9FF 100%);
+                  border: 2px solid #4FACFE;
+                  border-radius: 12px;
+                  padding: 25px;
+                  margin: 25px 0;
+                  box-shadow: 0 5px 15px rgba(79, 172, 254, 0.2);
+              }
+              .features-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                  gap: 20px;
+                  margin: 30px 0;
+              }
+              .feature-card {
+                  background: #f8f9fa;
+                  padding: 25px 20px;
+                  border-radius: 12px;
+                  text-align: center;
+                  border: 2px solid transparent;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              }
+              .feature-card:hover {
+                  border-color: #4FACFE;
+                  transform: translateY(-5px);
+                  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.2);
+              }
+              .feature-icon {
+                  font-size: 36px;
+                  margin-bottom: 15px;
+                  display: block;
+              }
+              .feature-card h4 {
+                  color: #2c3e50;
+                  margin: 0 0 10px 0;
+                  font-size: 18px;
+              }
+              .feature-card p {
+                  color: #6c757d;
+                  margin: 0;
+                  font-size: 14px;
+              }
+              .cta-section {
+                  text-align: center;
+                  margin: 40px 0;
+                  padding: 30px;
+                  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                  border-radius: 12px;
+              }
+              .cta-button {
+                  display: inline-block;
+                  background: linear-gradient(135deg, #28A745 0%, #20C997 100%);
+                  color: white;
+                  padding: 18px 40px;
+                  text-decoration: none;
+                  border-radius: 50px;
+                  font-weight: bold;
+                  font-size: 18px;
+                  margin: 15px 0;
+                  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+                  transition: all 0.3s ease;
+                  text-transform: uppercase;
+                  letter-spacing: 1px;
+              }
+              .cta-button:hover {
+                  transform: translateY(-3px);
+                  box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
+              }
+              .deadline-notice {
+                  background: linear-gradient(135deg, #FFF3CD 0%, #FFEAA7 100%);
+                  border: 2px solid #FFC107;
+                  border-radius: 10px;
+                  padding: 20px;
+                  margin: 25px 0;
+                  text-align: center;
+              }
+              .footer {
+                  background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+                  color: white;
+                  padding: 30px;
+                  text-align: center;
+              }
+              @media (max-width: 600px) {
+                  .email-container {
+                      margin: 10px;
+                  }
+                  .header, .content {
+                      padding: 25px 20px;
+                  }
+                  .features-grid {
+                      grid-template-columns: 1fr;
+                  }
+                  .cta-button {
+                      display: block;
+                      margin: 15px 0;
+                  }
+              }
+          </style>
+      </head>
+      <body>
+          <div class="email-container">
+              <div class="header">
+                  <div class="header-content">
+                      <div class="survey-icon">📋</div>
+                      <h1 style="margin: 0 0 10px 0; font-size: 28px;">Your Voice Matters</h1>
+                      <h2 style="margin: 0; font-size: 20px; font-weight: 300; opacity: 0.9;">Employee Engagement Survey {{ current_year }}</h2>
+                  </div>
+              </div>
+              
+              <div class="content">
+                  <h2 style="color: #2c3e50; margin-bottom: 25px;">Dear {{ employee_name }},</h2>
+                  
+                  <p style="font-size: 16px; line-height: 1.7; margin-bottom: 25px;">
+                      Your feedback is the driving force behind our continuous improvement at 
+                      {{ company_name or 'our organization' }}. We're conducting our comprehensive engagement 
+                      survey to understand your experience and make meaningful changes that matter to you.
+                  </p>
+                  
+                  <div class="highlight-box">
+                      <h3 style="margin: 0 0 20px 0; color: #1976D2; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                          🎯 Why Your Participation is Crucial
+                      </h3>
+                      <div style="text-align: left;">
+                          <p style="margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+                              <span style="color: #1976D2; font-size: 18px; margin-top: 2px;">•</span>
+                              <span><strong>Shape Our Culture:</strong> Your input directly influences workplace policies and environment improvements.</span>
+                          </p>
+                          <p style="margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+                              <span style="color: #1976D2; font-size: 18px; margin-top: 2px;">•</span>
+                              <span><strong>Enhance Benefits:</strong> Help us design compensation and benefits that truly meet your needs.</span>
+                          </p>
+                          <p style="margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+                              <span style="color: #1976D2; font-size: 18px; margin-top: 2px;">•</span>
+                              <span><strong>Drive Career Growth:</strong> Identify opportunities for professional development and advancement.</span>
+                          </p>
+                          <p style="margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+                              <span style="color: #1976D2; font-size: 18px; margin-top: 2px;">•</span>
+                              <span><strong>Address Challenges:</strong> Bring attention to issues that need immediate resolution.</span>
+                          </p>
+                      </div>
+                  </div>
+                  
+                  <div class="features-grid">
+                      <div class="feature-card">
+                          <span class="feature-icon">⏱️</span>
+                          <h4>Quick & Easy</h4>
+                          <p>Only 7-10 minutes to complete with smart, adaptive questions</p>
+                      </div>
+                      <div class="feature-card">
+                          <span class="feature-icon">🔒</span>
+                          <h4>100% Anonymous</h4>
+                          <p>Your responses are completely confidential and cannot be traced back to you</p>
+                      </div>
+                      <div class="feature-card">
+                          <span class="feature-icon">📊</span>
+                          <h4>Real Impact</h4>
+                          <p>Your feedback creates measurable changes in our workplace</p>
+                      </div>
+                  </div>
+                  
+                  <div class="cta-section">
+                      <h3 style="color: #2c3e50; margin: 0 0 20px 0;">Ready to Make Your Voice Heard?</h3>
+                      <a href="{{ survey_url }}" class="cta-button">🚀 Take Survey Now</a>
+                      <p style="margin: 20px 0 0 0; color: #6c757d; font-size: 14px;">
+                          Click the button above or copy this link: <br>
+                          <a href="{{ survey_url }}" style="color: #007bff; word-break: break-all;">{{ survey_url }}</a>
+                      </p>
+                  </div>
+                  
+                  <div class="deadline-notice">
+                      <h4 style="color: #856404; margin: 0 0 10px 0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                          ⏰ Survey Deadline
+                      </h4>
+                      <p style="margin: 0; font-size: 16px; font-weight: bold; color: #856404;">
+                          {{ survey_deadline }}
+                      </p>
+                      <p style="margin: 10px 0 0 0; font-size: 14px; color: #6c757d;">
+                          Don't miss your chance to influence positive change!
+                      </p>
+                  </div>
+                  
+                  <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; border-left: 4px solid #28a745; margin: 25px 0;">
+                      <h4 style="color: #155724; margin: 0 0 15px 0;">💡 What Happens Next?</h4>
+                      <ul style="margin: 0; padding-left: 20px; color: #155724;">
+                          <li style="margin: 8px 0;">We'll analyze all responses to identify trends and opportunities</li>
+                          <li style="margin: 8px 0;">Results will be shared with leadership for action planning</li>
+                          <li style="margin: 8px 0;">You'll receive updates on improvements being implemented</li>
+                          <li style="margin: 8px 0;">Follow-up surveys will track our progress together</li>
+                      </ul>
+                  </div>
+                  
+                  <p style="margin-top: 30px; color: #6c757d; text-align: center;">
+                      <strong>Questions about the survey?</strong><br>
+                      Contact our HR team at <a href="mailto:{{ hr_contact }}" style="color: #007bff;">{{ hr_contact }}</a>
+                  </p>
+              </div>
+              
+              <div class="footer">
+                  <p style="font-size: 18px; margin-bottom: 10px;">Thank you for helping us build a better workplace! 🌟</p>
+                  <p style="font-size: 14px; opacity: 0.8;">Employee Engagement Survey • {{ current_year }}</p>
+                  <p style="font-size: 12px; margin-top: 15px; opacity: 0.7;">
+                      This survey is powered by our HR Analytics Platform
+                  </p>
+              </div>
+          </div>
+      </body>
+      </html>
+    
+    text_template: |
+      YOUR VOICE MATTERS - Employee Engagement Survey {{ current_year }}
+      ================================================================
+      
+      Dear {{ employee_name }},
+      
+      Your feedback is the driving force behind our continuous improvement at {{ company_name or 'our organization' }}. 
+      We're conducting our comprehensive engagement survey to understand your experience and make meaningful changes that matter to you.
+      
+      🎯 WHY YOUR PARTICIPATION IS CRUCIAL:
+      
+      • Shape Our Culture: Your input directly influences workplace policies and environment improvements
+      • Enhance Benefits: Help us design compensation and benefits that truly meet your needs  
+      • Drive Career Growth: Identify opportunities for professional development and advancement
+      • Address Challenges: Bring attention to issues that need immediate resolution
+      
+      📋 SURVEY DETAILS:
+      
+      ⏱️ Quick & Easy: Only 7-10 minutes to complete with smart, adaptive questions
+      🔒 100% Anonymous: Your responses are completely confidential and cannot be traced back to you
+      📊 Real Impact: Your feedback creates measurable changes in our workplace
+      
+      🚀 TAKE SURVEY NOW: {{ survey_url }}
+      
+      ⏰ SURVEY DEADLINE: {{ survey_deadline }}
+      Don't miss your chance to influence positive change!
+      
+      💡 WHAT HAPPENS NEXT:
+      
+      1. We'll analyze all responses to identify trends and opportunities
+      2. Results will be shared with leadership for action planning  
+      3. You'll receive updates on improvements being implemented
+      4. Follow-up surveys will track our progress together
+      
+      Questions about the survey? Contact our HR team at {{ hr_contact }}
+      
+      Thank you for helping us build a better workplace! 🌟
+      
+      ---
+      Employee Engagement Survey {{ current_year }}
+      Powered by HR Analytics Platform
+
+  # ================================================================
+  # RETENTION CAMPAIGN TEMPLATES
+  # ================================================================
+  
+  retention_general:
+    template_id: "retention_general"
+    category: "retention_campaigns"
+    subject: "💼 {{ employee_name }}, We Value Your Journey at {{ company_name or 'Our Company' }}"
+    priority: "high"
+    variables:
+      - employee_name
+      - employee_role
+      - department
+      - tenure_years
+      - manager_name
+      - hr_contact
+      - feedback_url
+      - company_name
+    
+    html_template: |
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>We Value You</title>
+          <style>
+              body {
+                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                  line-height: 1.6;
+                  color: #333;
+                  margin: 0;
+                  padding: 0;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              }
+              .email-container {
+                  max-width: 650px;
+                  margin: 20px auto;
+                  background: #ffffff;
+                  border-radius: 15px;
+                  overflow: hidden;
+                  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+              }
+              .header {
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  color: white;
+                  padding: 40px 30px;
+                  text-align: center;
+                  position: relative;
+              }
+              .header::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,5 61,35 95,35 69,57 79,91 50,70 21,91 31,57 5,35 39,35" fill="rgba(255,255,255,0.1)"/></svg>') center/30px no-repeat;
+                  opacity: 0.3;
+              }
+              .content {
+                  padding: 40px 30px;
+              }
+              .appreciation-box {
+                  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+                  border: 2px solid #ffa000;
+                  border-radius: 15px;
+                  padding: 30px;
+                  margin: 30px 0;
+                  text-align: center;
+                  box-shadow: 0 8px 25px rgba(255, 160, 0, 0.2);
+                  position: relative;
+              }
+              .appreciation-box::before {
+                  content: '🌟';
+                  position: absolute;
+                  top: -15px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  background: white;
+                  padding: 10px;
+                  border-radius: 50%;
+                  font-size: 24px;
+                  box-shadow: 0 4px 12px rgba(255, 160, 0, 0.3);
+              }
+              .personal-note {
+                  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+                  border-left: 5px solid #4caf50;
+                  padding: 25px;
+                  margin: 25px 0;
+                  border-radius: 0 10px 10px 0;
+              }
+              .cta-buttons {
+                  text-align: center;
+                  margin: 35px 0;
+              }
+              .cta-button {
+                  display: inline-block;
+                  padding: 15px 30px;
+                  margin: 10px;
+                  text-decoration: none;
+                  border-radius: 25px;
+                  font-weight: bold;
+                  font-size: 16px;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+              }
+              .btn-primary {
+                  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+                  color: white;
+              }
+              .btn-secondary {
+                  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+                  color: white;
+              }
+              .cta-button:hover {
+                  transform: translateY(-2px);
+                  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+              }
+              .stats-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  gap: 20px;
+                  margin: 30px 0;
+              }
+              .stat-card {
+                  background: #f8f9fa;
+                  padding: 20px;
+                  border-radius: 10px;
+                  text-align: center;
+                  border: 2px solid transparent;
+                  transition: all 0.3s ease;
+              }
+              .stat-card:hover {
+                  border-color: #667eea;
+                  transform: translateY(-2px);
+              }
+              .footer {
+                  background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+                  color: white;
+                  padding: 30px;
+                  text-align: center;
+              }
+          </style>
+      </head>
+      <body>
+          <div class="email-container">
+              <div class="header">
+                  <h1 style="margin: 0 0 10px 0; font-size: 32px;">💼 We Value You</h1>
+                  <p style="margin: 0; font-size: 18px; opacity: 0.9;">A personal message about your journey with us</p>
+              </div>
+              
+              <div class="content">
+                  <h2 style="color: #2c3e50; margin-bottom: 25px;">Dear {{ employee_name }},</h2>
+                  
+                  <div class="appreciation-box">
+                      <h3 style="color: #e65100; margin: 20px 0 15px 0; font-size: 24px;">
+                          Thank You for {{ tenure_years }} Amazing Years!
+                      </h3>
+                      <p style="color: #ef6c00; margin: 0; font-size: 16px; line-height: 1.6;">
+                          Your contributions as a <strong>{{ employee_role }}</strong> have made a significant 
+                          impact on our {{ department }} team and {{ company_name or 'the company' }} as a whole.
+                      </p>
+                  </div>
+                  
+                  <p style="font-size: 16px; line-height: 1.7; margin-bottom: 25px;">
+                      We wanted to take a moment to reach out and express our sincere appreciation for your 
+                      dedication, expertise, and the unique perspective you bring to our team every day. 
+                      Your work doesn't go unnoticed, and we're genuinely grateful to have you as part of our organization.
+                  </p>
+                  
+                  <div class="personal-note">
+                      <h3 style="color: #2e7d32; margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                          💬 Let's Have a Conversation
+                      </h3>
+                      <p style="margin: 0 0 15px 0; color: #388e3c;">
+                          Your manager, <strong>{{ manager_name }}</strong>, would love to schedule some time to discuss:
+                      </p>
+                      <ul style="color: #4caf50; margin: 0; padding-left: 20px;">
+                          <li style="margin: 8px 0;">Your career goals and aspirations for the future</li>
+                          <li style="margin: 8px 0;">Any challenges you're currently facing</li>
+                          <li style="margin: 8px 0;">Opportunities for professional growth and development</li>
+                          <li style="margin: 8px 0;">How we can better support you in your role</li>
+                          <li style="margin: 8px 0;">Ideas you have for improving our team and processes</li>
+                      </ul>
+                  </div>
+                  
+                  <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 25px; border-radius: 12px; margin: 25px 0;">
+                      <h3 style="color: #1976d2; margin: 0 0 15px 0;">🚀 What's Next for You?</h3>
+                      <p style="color: #1565c0; margin: 0; line-height: 1.6;">
+                          We're committed to ensuring your experience here continues to be rewarding and fulfilling. 
+                          We have some exciting initiatives and opportunities coming up, and we'd love to get your 
+                          input on how we can make them even better. Your growth and satisfaction are genuinely 
+                          important to us.
+                      </p>
+                  </div>
+                  
+                  <div class="stats-grid">
+                      <div class="stat-card">
+                          <h4 style="color: #667eea; margin: 0 0 10px 0;">Your Impact</h4>
+                          <p style="margin: 0; color: #6c757d;">{{ tenure_years }} years of valuable contributions</p>
+                      </div>
+                      <div class="stat-card">
+                          <h4 style="color: #667eea; margin: 0 0 10px 0;">Our Commitment</h4>
+                          <p style="margin: 0; color: #6c757d;">Continuous investment in your growth</p>
+                      </div>
+                      <div class="stat-card">
+                          <h4 style="color: #667eea; margin: 0 0 10px 0;">Future Together</h4>
+                          <p style="margin: 0; color: #6c757d;">Exciting opportunities ahead</p>
+                      </div>
+                  </div>
+                  
+                  <div class="cta-buttons">
+                      <a href="{{ feedback_url }}" class="cta-button btn-primary">💭 Share Your Thoughts</a>
+                      <a href="mailto:{{ manager_name | replace(' ', '.') | lower }}@company.com" class="cta-button btn-secondary">📅 Schedule a Chat</a>
+                  </div>
+                  
+                  <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 20px; border-radius: 0 8px 8px 0; margin: 25px 0;">
+                      <p style="margin: 0; color: #e65100; line-height: 1.6;">
+                          <strong>Open Door Policy:</strong> If you have any immediate concerns, questions, or just want to chat, 
+                          please don't hesitate to reach out to HR at 
+                          <a href="mailto:{{ hr_contact }}" style="color: #f57c00;">{{ hr_contact }}</a>. 
+                          We're here to support you every step of the way.
+                      </p>
+                  </div>
+              </div>
+              
+              <div class="footer">
+                  <p style="font-size: 18px; margin-bottom: 15px;">Thank you for being an essential part of our team! 🌟</p>
+                  <p style="font-size: 14px; opacity: 0.8;">With sincere appreciation,</p>
+                  <p style="font-size: 16px; font-weight: bold; margin-top: 10px;">The HR Team</p>
+              </div>
+          </div>
+      </body>
+      </html>
+
+  retention_benefits:
+    template_id: "retention_benefits"
+    category: "retention_campaigns"
+    subject: "🎁 Exclusive Benefits Update: New Perks Designed Just for You!"
+    priority: "high"
+    variables:
+      - employee_name
+      - new_benefits
+      - savings_estimate
+      - benefits_url
+      - hr_contact
+      - effective_date
+    
+    html_template: |
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Exciting New Benefits</title>
+          <style>
+              body {
+                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                  line-height: 1.6;
+                  color: #333;
+                  margin: 0;
+                  padding: 0;
+                  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+              }
+              .email-container {
+                  max-width: 650px;
+                  margin: 20px auto;
+                  background: #ffffff;
+                  border-radius: 15px;
+                  overflow: hidden;
+                  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+              }
+              .header {
+                  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                  color: white;
+                  padding: 40px 30px;
+                  text-align: center;
+                  position: relative;
+              }
+              .gift-icon {
+                  font-size: 48px;
+                  margin-bottom: 15px;
+                  animation: giftShake 2s infinite;
+              }
+              @keyframes giftShake {
+                  0%, 50%, 100% { transform: rotate(0deg); }
+                  10%, 30% { transform: rotate(-10deg); }
+                  20%, 40% { transform: rotate(10deg); }
+              }
+              .content {
+                  padding: 40px 30px;
+              }
+              .benefits-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                  gap: 20px;
+                  margin: 30px 0;
+              }
+              .benefit-card {
+                  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                  padding: 25px 20px;
+                  border-radius: 15px;
+                  text-align: center;
+                  border: 3px solid transparent;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+                  position: relative;
+                  overflow: hidden;
+              }
+              .benefit-card::before {
+                  content: '';
+                  position: absolute;
+                  top: -2px;
+                  left: -2px;
+                  right: -2px;
+                  bottom: -2px;
+                  background: linear-gradient(45deg, #11998e, #38ef7d, #11998e);
+                  border-radius: 15px;
+                  z-index: -1;
+                  opacity: 0;
+                  transition: opacity 0.3s ease;
+              }
+              .benefit-card:hover::before {
+                  opacity: 1;
+              }
+              .benefit-card:hover {
+                  transform: translateY(-8px);
+                  box-shadow: 0 15px 35px rgba(17, 153, 142, 0.3);
+              }
+              .benefit-icon {
+                  font-size: 48px;
+                  margin-bottom: 20px;
+                  display: block;
+              }
+              .savings-highlight {
+                  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+                  border: 3px solid #4caf50;
+                  border-radius: 15px;
+                  padding: 30px;
+                  margin: 30px 0;
+                  text-align: center;
+                  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+              }
+              .cta-button {
+                  display: inline-block;
+                  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                  color: white;
+                  padding: 18px 35px;
+                  text-decoration: none;
+                  border-radius: 50px;
+                  font-weight: bold;
+                  font-size: 16px;
+                  margin: 15px 10px;
+                  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+                  transition: all 0.3s ease;
+                  text-transform: uppercase;
+                  letter-spacing: 1px;
+              }
+              .cta-button:hover {
+                  transform: translateY(-3px);
+                  box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
+              }
+          </style>
+      </head>
+      <body>
+          <div class="email-container">
+              <div class="header">
+                  <div class="gift-icon">🎁</div>
+                  <h1 style="margin: 0 0 10px 0; font-size: 28px;">Exciting New Benefits!</h1>
+                  <p style="margin: 0; font-size: 18px; opacity: 0.9;">Exclusively designed for valued employees like you</p>
+              </div>
+              
+              <div class="content">
+                  <h2 style="color: #2c3e50; margin-bottom: 25px;">Dear {{ employee_name }},</h2>
+                  
+                  <p style="font-size: 16px; line-height: 1.7; margin-bottom: 25px;">
+                      We're thrilled to announce some amazing new benefits that are now available exclusively to you! 
+                      These enhancements are part of our ongoing commitment to supporting your well-being, 
+                      professional growth, and work-life balance.
+                  </p>
+                  
+                  <div class="benefits-grid">
+                      {% for benefit in new_benefits %}
+                      <div class="benefit-card">
+                          <span class="benefit-icon">✨</span>
+                          <h3 style="color: #11998e; margin: 0 0 15px 0; font-size: 20px;">{{ benefit }}</h3>
+                          <p style="color: #6c757d; margin: 0; font-size: 14px;">Now available in your benefits package</p>
+                      </div>
+                      {% endfor %}
+                  </div>
+                  
+                  <div class="savings-highlight">
+                      <h3 style="color: #2e7d32; margin: 0 0 15px 0; font-size: 24px;">💰 Your Estimated Annual Savings</h3>
+                      <p style="font-size: 36px; font-weight: bold; color: #4caf50; margin: 10px 0;">{{ savings_estimate }}</p>
+                      <p style="color: #388e3c; margin: 0; font-size: 16px;">Based on your current role and benefit elections</p>
+                  </div>
+                  
+                  <div style="text-align: center; margin: 40px 0;">
+                      <a href="{{ benefits_url }}" class="cta-button">🔗 Access Benefits Portal</a>
+                  </div>
+                  
+                  <div style="background: #e3f2fd; padding: 25px; border-radius: 12px; border-left: 4px solid #2196f3;">
+                      <h3 style="color: #1976d2; margin: 0 0 15px 0;">📞 Questions About Your Benefits?</h3>
+                      <p style="color: #1565c0; margin: 0;">
+                          Contact our HR team at <a href="mailto:{{ hr_contact }}" style="color: #0d47a1;">{{ hr_contact }}</a> 
+                          for personalized assistance.
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </body>
+      </html>
+
+# ================================================================
+# SYSTEM NOTIFICATION TEMPLATES
+# ================================================================
+
+system_notification:
+  template_id: "system_notification"
+  category: "notifications"
+  subject: "🔔 {{ notification_type }}: {{ subject_line }}"
+  priority: "normal"
+  variables:
+    - notification_type
+    - subject_line
+    - message_body
+    - action_url
+    - support_contact
+  
+  html_template: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>System Notification</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                margin: 0;
+                padding: 20px;
+                background: #f4f4f4;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            .header {
+                background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+                color: white;
+                padding: 30px;
+                text-align: center;
+            }
+            .content {
+                padding: 30px;
+            }
+            .notification-icon {
+                font-size: 48px;
+                margin-bottom: 15px;
+            }
+            .cta-button {
+                display: inline-block;
+                background: #007bff;
+                color: white;
+                padding: 12px 25px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin: 15px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="notification-icon">🔔</div>
+                <h1>{{ notification_type }}</h1>
+            </div>
+            <div class="content">
+                <h2>{{ subject_line }}</h2>
+                <div style="margin: 20px 0;">
+                    {{ message_body | safe }}
+                </div>
+                {% if action_url %}
+                <div style="text-align: center;">
+                    <a href="{{ action_url }}" class="cta-button">Take Action</a>
+                </div>
+                {% endif %}
+                <p style="margin-top: 30px; color: #6c757d; font-size: 14px;">
+                    For support, contact: <a href="mailto:{{ support_contact }}">{{ support_contact }}</a>
+                </p>
+            </div>
+        </div>
+    </body>
+    </html>
+
+# ================================================================
+# TEMPLATE METADATA
+# ================================================================
+
+metadata:
+  version: "1.0"
+  created_date: "2025-09-13"
+  last_updated: "2025-09-13"
+  total_templates: 6
+  categories:
+    - manager_alerts
+    - engagement_surveys  
+    - retention_campaigns
+    - notifications
+  
+  default_variables:
+    company_name: "Your Company"
+    current_date: "{{ current_date }}"
+    current_year: "{{ current_year }}"
+    support_email: "hr-support@company.com"
+    dashboard_url: "https://hr-dashboard.company.com"
+    
+  styling_theme:
+    primary_colors:
+      - "#00D4FF"  # Electric Blue
+      - "#B026FF"  # Neon Purple
+      - "#00FF88"  # Matrix Green
+      - "#FF6B35"  # Cyber Orange
+      - "#FF2D75"  # Neon Pink
+    
+    gradients:
+      primary: "linear-gradient(135deg, #00D4FF 0%, #B026FF 100%)"
+      success: "linear-gradient(135deg, #28A745 0%, #20C997 100%)"
+      warning: "linear-gradient(135deg, #FFC107 0%, #FF8F00 100%)"
+      error: "linear-gradient(135deg, #FF2D75 0%, #FF6B35 100%)"
+    
+    fonts:
+      primary: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+      display: "'Orbitron', 'Segoe UI', sans-serif"
+      mono: "'Fira Code', 'Courier New', monospace"
+  
+  responsive_breakpoints:
+    mobile: "600px"
+    tablet: "768px"
+    desktop: "1024px"
+    
+  accessibility:
+    min_contrast_ratio: "4.5:1"
+    alt_text_required: true
+    keyboard_navigation: true
+    screen_reader_friendly: true
+
+# ================================================================
+# USAGE INSTRUCTIONS
+# ================================================================
+
+usage_notes: |
+  Email Template Configuration Guide
+  =================================
+  
+  1. Template Structure:
+     - Each template has a unique template_id
+     - Categories organize templates by purpose
+     - Variables define dynamic content placeholders
+     - Both HTML and text versions provided
+  
+  2. Variable Usage:
+     - Use {{ variable_name }} for simple substitution
+     - Use {% for item in list %} for loops
+     - Use {% if condition %} for conditional content
+     - All variables should be defined in the variables list
+  
+  3. Styling Guidelines:
+     - Responsive design for mobile/desktop
+     - High contrast for accessibility
+     - Consistent color scheme (cyberpunk theme)
+     - Professional typography hierarchy
+  
+  4. Customization:
+     - Modify HTML/CSS for design changes
+     - Add new variables as needed
+     - Create new templates following existing patterns
+     - Test across different email clients
+  
+  5. Integration:
+     - Templates loaded by EmailService class
+     - Variables passed from Python application
+     - Jinja2 template engine processes placeholders
+     - Automatic fallback to text version if HTML fails
+ 
+  6. Best Practices:
+      - Keep subject lines concise and engaging
+      - Personalize content with employee-specific data
+      - Include clear calls to action (CTAs)
+      - Regularly review and update templates for relevance
+
+  7. Support:
+      - For issues, contact the HR Tech team at support_email
+      - Refer to documentation for advanced customization options 
+      - Ensure compliance with company branding guidelines
+
+  8. Example Usage: 
+      - Load template by template_id
+      - Render with context variables
+      - Send via email service provider
+ 
+  9. Version Control:
+      - Maintain version history for templates
+      - Document changes in metadata section
+      - Regularly audit templates for accuracy and effectiveness
+  
+  10. Feedback:
+      - Collect feedback from recipients for improvements
+      - Monitor engagement metrics (open rates, click rates)
+      - Iterate on design and content based on feedback 
+  
+  11. Legal Compliance:
+      - Ensure all templates comply with data privacy laws 
+      - Include necessary disclaimers and opt-out options
+      - Regularly review templates for legal compliance
+  
+  12. Training:
+      - Provide training for HR and communications teams on template usage best practices 
+      - Share updates on new templates and features
+      - Encourage collaboration for continuous improvement
+
+

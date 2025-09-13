@@ -1,0 +1,81 @@
+# Core Data Science & ML
+pandas
+numpy
+scikit-learn
+xgboost
+lightgbm
+
+# Visualization & Charts
+plotly
+seaborn
+matplotlib
+altair
+
+# Streamlit & Web Interface
+streamlit
+streamlit-option-menu
+streamlit-aggrid
+streamlit-plotly-events
+
+# Explainable AI
+shap
+lime
+eli5
+
+# Model Persistence & Configuration
+joblib
+pickle5
+pyyaml
+configparser
+
+# Data Generation & Utilities
+faker
+python-dateutil
+pytz
+
+# Email & Communication
+smtplib2
+email-validator
+yagmail
+premailer
+
+# File Processing & Export
+openpyxl
+xlsxwriter
+fpdf2
+reportlab
+pillow
+
+# Statistical Analysis
+scipy
+statsmodels
+
+# Progress Bars & UI Enhancements
+tqdm
+rich
+click
+
+# Development & Testing
+pytest
+black
+flake8
+mypy
+
+# Additional Utilities
+python-dotenv
+requests
+pathlib2
+typing-extensions
+
+# Performance & Optimization
+numba
+cachetools
+functools32
+
+# Database (if needed later)
+sqlite3
+sqlalchemy
+
+# Deployment & Monitoring
+watchdog
+psutil
